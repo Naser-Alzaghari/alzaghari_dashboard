@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -42,9 +43,9 @@ Route::get('/categories', function () {
     return view('admin/categories');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/products', function () {
-    return view('admin/products');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/products', function () {
+//     return view('admin/products');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/reviews', function () {
     return view('admin/reviews');
@@ -69,6 +70,9 @@ Route::get('/orders', function () {
 Route::resource('users', UserController::class);
 Route::post('/users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
 Route::get('/api/sales', [DashboardController::class, 'getMonthlySales']);
+
+Route::resource('products', ProductController::class);
+
 
 // Route::get('/orders', function () {
 //     return view('admin/orders');

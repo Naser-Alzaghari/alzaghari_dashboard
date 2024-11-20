@@ -9,7 +9,7 @@ class ProductColor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'color_id', 'stock', 'image_url'];
+    protected $fillable = ['product_id', 'color_id', 'stock'];
 
     // Belongs-to relationship with Product
     public function product()
