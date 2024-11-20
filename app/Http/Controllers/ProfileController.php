@@ -57,4 +57,12 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+
+    public function showProfile()
+{
+    return view('profile.partials.update-profile-information-form', [
+        'user' => Auth::user()
+    ]);
+}
 }

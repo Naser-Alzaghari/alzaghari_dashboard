@@ -79,9 +79,17 @@ class UserController extends Controller
     }
 
     // Remove the specified user from the database
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        $user = User::findOrFail($id);
+        $user->delete(); // Soft delete
+        return redirect()->route('users.index')->with('success', 'User soft-deleted successfully!');
     }
+
+//     public function restore($id)
+// {
+//     $user = User::onlyTrashed()->findOrFail($id);
+//     $user->restore(); // Restore the user
+//     return redirect()->route('users.trashed')->with('success', 'User restored successfully!');
+// }
 }

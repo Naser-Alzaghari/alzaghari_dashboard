@@ -143,7 +143,25 @@
                             >
                               <i class="fa fa-edit"></i>
                             </a>
+                            <!-- Delete Button -->
+                          <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                            @csrf
+                            @method('DELETE') <!-- Spoof the DELETE method -->
                             <button
+                              type="submit"
+                              data-bs-toggle="tooltip"
+                              title=""
+                              class="btn btn-link btn-danger btn-lg"
+                              data-original-title="Remove"
+                            >
+                              <i class="fa fa-times"></i>
+                            </button>
+                        </form>
+                        {{-- <form action="{{ route('users.restore', $user->id) }}" method="POST">
+                          @csrf
+                          <button type="submit" class="btn btn-success">Restore</button>
+                      </form> --}}
+                            {{-- <button
                               type="button"
                               data-bs-toggle="tooltip"
                               title=""
@@ -151,13 +169,14 @@
                               data-original-title="Remove"
                             >
                               <i class="fa fa-times"></i>
-                            </button>
+                            </button> --}}
+                            
                           </div>
                         </td>
                       </tr>
                   @endforeach
 
-                      
+                  
                       
                     </tbody>
                   </table>
@@ -169,6 +188,46 @@
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById("alert_demo_7").addEventListener("click",()=>{
+console.log(111);
 
+});
+  </script>
+  <script>
+    console.log(111);
+    // $("#alert_demo_7").click(function (e) {
+    //         swal({
+    //           title: "Are you sure?",
+    //           text: "You won't be able to revert this!",
+    //           type: "warning",
+    //           buttons: {
+    //             confirm: {
+    //               text: "Yes, delete it!",
+    //               className: "btn btn-success",
+    //             },
+    //             cancel: {
+    //               visible: true,
+    //               className: "btn btn-danger",
+    //             },
+    //           },
+    //         }).then((Delete) => {
+    //           if (Delete) {
+    //             swal({
+    //               title: "Deleted!",
+    //               text: "Your file has been deleted.",
+    //               type: "success",
+    //               buttons: {
+    //                 confirm: {
+    //                   className: "btn btn-success",
+    //                 },
+    //               },
+    //             });
+    //           } else {
+    //             swal.close();
+    //           }
+    //         });
+    //       });
+  </script>
   
 @endsection

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +21,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('admin/dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Route::get('/dashboard', DashboardController::class);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard.index')
+    ->middleware('auth');
+
+    
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -49,11 +58,17 @@ Route::get('/orders', function () {
     return view('admin/orders');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Route::get('/profile', function () {
+//     return view('profile/edit');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 // Route::get('/users', function () {
 //     return view('admin/users/index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('users', UserController::class);
+Route::post('/users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
+Route::get('/api/sales', [DashboardController::class, 'getMonthlySales']);
 
 // Route::get('/orders', function () {
 //     return view('admin/orders');

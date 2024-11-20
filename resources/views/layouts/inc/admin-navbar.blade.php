@@ -328,7 +328,7 @@ class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bo
                 <h4>Hizrian</h4>
                 <p class="text-muted">hello@example.com</p>
                 <a
-                  href="profile.html"
+                  href="/profile"
                   class="btn btn-xs btn-secondary btn-sm"
                   >View Profile</a
                 >
