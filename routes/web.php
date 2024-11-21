@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -39,17 +42,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/categories', function () {
-    return view('admin/categories');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/categories', function () {
+//     return view('admin/categories');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::get('/products', function () {
 //     return view('admin/products');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/reviews', function () {
-    return view('admin/reviews');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/reviews', function () {
+//     return view('admin/reviews');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/copuns', function () {
     return view('admin/copuns');
@@ -73,6 +76,11 @@ Route::get('/api/sales', [DashboardController::class, 'getMonthlySales']);
 
 Route::resource('products', ProductController::class);
 
+Route::resource('reviews', ReviewController::class);
+Route::get('/reviews/{review}/toggle', [ReviewController::class, 'toggle'])->name('reviews.toggle');
+
+Route::resource('categories', CategoryController::class);
+Route::resource('orders', OrderController::class);
 
 // Route::get('/orders', function () {
 //     return view('admin/orders');

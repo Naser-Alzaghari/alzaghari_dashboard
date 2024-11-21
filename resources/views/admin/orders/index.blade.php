@@ -1,11 +1,21 @@
 @extends('layouts.admin-masterpage')
 
-
 @section('content')
 <div class="container">
     <div class="page-inner">
         <div class="col-md-12">
             <div class="card">
+              <div class="card-header">
+                <div class="d-flex align-items-center">
+                  <h4 class="card-title">Add Row</h4>
+                  <a href="{{ route('orders.create') }}"
+                    class="btn btn-primary btn-round ms-auto"
+                  >
+                    <i class="fa fa-plus"></i>
+                    Add Row
+                  </a>
+                </div>
+              </div>
               <div class="card-body">
                 <!-- Modal -->
                 <div
@@ -101,36 +111,46 @@
                   >
                     <thead>
                       <tr>
-                        <th>user name</th>
-                        <th>comment</th>
-                        <th>State</th>
+                        <th>order id</th>
+                        <th>order_date</th>
+                        <th>total_amount</th>
+                        <th>status</th>
+                        <th>payment_status</th>
                         <th style="width: 10%">Action</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
-                        <th>user name</th>
-                        <th>comment</th>
-                        <th>State</th>
+                        <th>order id</th>
+                        <th>order_date</th>
+                        <th>total_amount</th>
+                        <th>status</th>
+                        <th>payment_status</th>
                         <th>Action</th>
                       </tr>
                     </tfoot>
                     <tbody>
-                      @foreach ($reviews as $review)
+                      @foreach ($orders as $order)
                       <tr>
-                        <td>{{$review->user->name}}</td>
-                        <td>{{$review->comment}}</td>
-                        <td>{{$review->is_active}}</td>
+                        <td>{{$order->id}}</td>
+                        <td>{{$order->order_date}}</td>
+                        <td>{{$order->total_amount}}</td>
+                        <td>{{$order->status}}</td>
+                        <td>{{$order->payment_status}}</td>
                         <td>
                           <div class="form-button-action">
-                            <form action="{{ route('reviews.toggle', $review) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method("GET")
-                                <button type="submit" class="btn btn-link">{{!$review->is_active ? "Active" : "Disable"}}</button>
-                            </form>
-                            
+                            <a
+                              href="{{ route('orders.edit', $order) }}"
+                              type="button"
+                              data-bs-toggle="tooltip"
+                              title=""
+                              class="btn btn-link btn-primary btn-lg"
+                              data-original-title="Edit Task"
+                            >
+                              <i class="fa fa-edit"></i>
+                            </a>
                             <!-- Delete Button -->
-                          <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this review?');">
+                          <form action="{{ route('orders.destroy', $order->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?');">
                             @csrf
                             @method('DELETE') <!-- Spoof the DELETE method -->
                             <button
@@ -143,7 +163,7 @@
                               <i class="fa fa-times"></i>
                             </button>
                         </form>
-                        {{-- <form action="{{ route('users.restore', $user->id) }}" method="POST">
+                        {{-- <form action="{{ route('orders.restore', $order->id) }}" method="POST">
                           @csrf
                           <button type="submit" class="btn btn-success">Restore</button>
                       </form> --}}
