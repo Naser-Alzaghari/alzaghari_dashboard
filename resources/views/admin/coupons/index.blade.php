@@ -8,7 +8,7 @@
               <div class="card-header">
                 <div class="d-flex align-items-center">
                   <h4 class="card-title">Add Row</h4>
-                  <a href="{{ route('products.create') }}"
+                  <a href="{{ route('coupons.create') }}"
                     class="btn btn-primary btn-round ms-auto"
                   >
                     <i class="fa fa-plus"></i>
@@ -111,72 +111,36 @@
                   >
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>category</th>
-                        <th>price</th>
-                        <th>color</th>
-                        <th>stock</th>
+                        <th>coupon_code</th>
+                        <th>discount_percentage</th>
+                        <th>coupon_status</th>
                         <th style="width: 10%">Action</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
-                        <th>Name</th>
-                        <th>category</th>
-                        <th>price</th>
-                        <th>color</th>
-                        <th>stock</th>
+                        <th>coupon_code</th>
+                        <th>discount_percentage</th>
+                        <th>coupon_status</th>
                         <th>Action</th>
                       </tr>
                     </tfoot>
                     <tbody>
-                      @foreach ($products as $product)
+                      @foreach ($coupons as $coupon)
                       <tr>
-                        <td>{{$product->name}}</td>
-                        <td>{{$product->category->name}}</td>
-                        <td>{{$product->price}}</td>
-                        <td>@if(isset($product->colors[0]->name)) {{$product->colors[0]->name}} @endif</td>
-                        <td>
-
-                            @if (isset($product->colors[0]))
-                                @foreach ($product->colors as $color)
-                                {{$color->name}}{{"->"}}{{$color->pivot->stock}}<br>
-                                @endforeach
-                                {{"total ->"}}{{$product->stock}}<br>
-                            @endif
-
-                            @if(!isset($product->colors[0]))
-                            {{$product->stock}}
-                            @endif
-                            
-                        
-                        
-                        
-                        </td>
+                        <td>{{$coupon->coupon_code}}</td>
+                        <td>{{$coupon->discount_percentage}}</td>
+                        <td>{{$coupon->coupon_status}}</td>
                         <td>
                           <div class="form-button-action">
-                            <a
-                              href="{{ route('products.edit', $product) }}"
-                              type="button"
-                              data-bs-toggle="tooltip"
-                              title=""
-                              class="btn btn-link btn-primary btn-lg"
-                              data-original-title="Edit Task"
-                            >
-                              <i class="fa fa-edit"></i>
-                            </a>
-                            {{-- <a
-                              href="{{ route('products.addStockForm', $product->id) }}"
-                              type="button"
-                              data-bs-toggle="tooltip"
-                              title=""
-                              class="btn btn-link btn-success btn-lg"
-                              data-original-title="Edit Task"
-                            >
-                              <i class="fa fa-edit"></i>
-                            </a> --}}
+                            <form action="{{ route('coupons.toggle', $coupon) }}" method="POST" style="display: inline;">
+                              @csrf
+                              @method("patch")
+                              <button type="submit" class="btn btn-link">{{!$coupon->coupon_status ? "Active" : "Disable"}}</button>
+                          </form>
+
                             <!-- Delete Button -->
-                          <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                          <form action="{{ route('coupons.destroy', $coupon->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this coupon?');">
                             @csrf
                             @method('DELETE') <!-- Spoof the DELETE method -->
                             <button
@@ -189,7 +153,7 @@
                               <i class="fa fa-times"></i>
                             </button>
                         </form>
-                        {{-- <form action="{{ route('products.restore', $product->id) }}" method="POST">
+                        {{-- <form action="{{ route('coupons.restore', $coupon->id) }}" method="POST">
                           @csrf
                           <button type="submit" class="btn btn-success">Restore</button>
                       </form> --}}

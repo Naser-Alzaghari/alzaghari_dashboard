@@ -5,7 +5,7 @@
     <div class="page-inner">
         <div class="col-md-12">
             <div class="card">
-              <div class="card-header">
+              {{-- <div class="card-header">
                 <div class="d-flex align-items-center">
                   <h4 class="card-title">Add Row</h4>
                   <a href="{{ route('orders.create') }}"
@@ -15,7 +15,7 @@
                     Add Row
                   </a>
                 </div>
-              </div>
+              </div> --}}
               <div class="card-body">
                 <!-- Modal -->
                 <div
@@ -114,6 +114,7 @@
                         <th>order id</th>
                         <th>order_date</th>
                         <th>total_amount</th>
+                        <th>after discount</th>
                         <th>status</th>
                         <th>payment_status</th>
                         <th style="width: 10%">Action</th>
@@ -124,6 +125,7 @@
                         <th>order id</th>
                         <th>order_date</th>
                         <th>total_amount</th>
+                        <th>after discount</th>
                         <th>status</th>
                         <th>payment_status</th>
                         <th>Action</th>
@@ -135,6 +137,7 @@
                         <td>{{$order->id}}</td>
                         <td>{{$order->order_date}}</td>
                         <td>{{$order->total_amount}}</td>
+                        <td>{{$order->total_amount_after_discount}}</td>
                         <td>{{$order->status}}</td>
                         <td>{{$order->payment_status}}</td>
                         <td>

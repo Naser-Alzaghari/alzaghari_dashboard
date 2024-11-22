@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -48,6 +49,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders', function () {
         return view('admin/orders');
     })->middleware(['auth', 'verified'])->name('dashboard');
+
+    Route::resource('coupons', CouponController::class);
+    Route::patch('/coupons/{coupon}/toggle', [CouponController::class, 'toggle'])->name('coupons.toggle');
+
+
 
     Route::resource('users', UserController::class);
     Route::post('/users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');

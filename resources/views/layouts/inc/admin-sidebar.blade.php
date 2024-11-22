@@ -71,12 +71,12 @@
           </li>
           <li class="nav-item {{ Request::is('copuns') ? 'active' : '' }}">
             <a
-              href="/copuns"
+              href="/coupons"
               class="collapsed"
               aria-expanded="false"
             >
               <i class="fas fa-tag"></i>
-              <p>copuns</p>
+              <p>coupons</p>
             </a>
           </li>
           <li class="nav-item {{ Request::is('products') ? 'active' : '' }}">

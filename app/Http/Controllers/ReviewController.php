@@ -39,7 +39,6 @@ class ReviewController extends Controller
 
     public function toggle(Request $request, Review $review){
         
-
         $review->is_active ? $review->is_active = 0 : $review->is_active = 1;
         
         $review->save();

@@ -83,9 +83,10 @@
                     </select>
                 </div>
 
-
+                <p class="mb-0">final price</p>
                 <div class="input-group mb-3">
                   <span class="input-group-text">$</span>
+                  
                   <input type="text" class="form-control" name="total_amount_after_discount" aria-label="Amount (to the nearest dollar)" value="{{ isset($order) ? $order->total_amount_after_discount : ""}}">
               </div>
 
