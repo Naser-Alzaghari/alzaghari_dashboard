@@ -3,22 +3,7 @@
 class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
 >
 <div class="container-fluid">
-  <nav
-    class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
-  >
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <button type="submit" class="btn btn-search pe-1">
-          <i class="fa fa-search search-icon"></i>
-        </button>
-      </div>
-      <input
-        type="text"
-        placeholder="Search ..."
-        class="form-control"
-      />
-    </div>
-  </nav>
+  
 
   <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
     <li
@@ -325,8 +310,9 @@ class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bo
                 />
               </div>
               <div class="u-text">
-                <h4>Hizrian</h4>
-                <p class="text-muted">hello@example.com</p>
+                <h4>{{Auth::user()->name}}</h4>
+                <p class="text-muted" style="text-overflow: ellipsis; white-space: nowrap;
+">{{Auth::user()->email}}</p>
                 <a
                   href="/profile"
                   class="btn btn-xs btn-secondary btn-sm"
@@ -337,13 +323,7 @@ class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bo
           </li>
           <li>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">My Profile</a>
-            <a class="dropdown-item" href="#">My Balance</a>
-            <a class="dropdown-item" href="#">Inbox</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Account Setting</a>
-            <div class="dropdown-divider"></div>
-            {{-- <a class="dropdown-item" href="#">Logout</a> --}}
+            
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="dropdown-item">

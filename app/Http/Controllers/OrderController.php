@@ -23,7 +23,9 @@ class OrderController extends Controller
     // Show the form for creating a new user
     public function create()
     {
-        return view('admin.orders.create');
+        $states = ['pending', 'shipped', 'delivered', 'cancelled'];
+        $payment_status = ['paid', 'unpaid'];
+        return view('admin.orders.create', compact('states','payment_status'));
     }
 
     // Store a newly created user in the database
@@ -64,7 +66,9 @@ class OrderController extends Controller
     // Show the form for editing the specified Order
     public function edit(Order $order)
     {
-        return view('admin.orders.create', compact('order'));
+        $states = ['pending', 'shipped', 'delivered', 'cancelled'];
+        $payment_status = ['paid', 'unpaid'];
+        return view('admin.orders.create', compact('order','states','payment_status'));
     }
 
     // Update the specified user in the database
@@ -80,12 +84,9 @@ class OrderController extends Controller
         // ]);
 
 
-        $order->user_id = $request->user_id;
-        $order->order_date = $request->order_date;
         $order->status = $request->status;
-        $order->total_amount = $request->total_amount;
         $order->payment_status = $request->payment_status;
-        $order->pickup_date = $request->pickup_date;
+        $order->total_amount_after_discount = $request->total_amount_after_discount;
         $order->save();
 
         return redirect()->route('orders.index')->with('success', 'Order updated successfully.');

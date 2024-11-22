@@ -3,9 +3,9 @@
     <div class="sidebar-logo">
       <!-- Logo Header -->
       <div class="logo-header" data-background-color="dark">
-        <a href="index.html" class="logo">
+        <a href="/dashboard" class="logo">
           <img
-            src="{{ asset('assets/img/kaiadmin/logo_light.svg') }}"
+            src="{{ asset('assets/img/logo/sidebar-logo.png')}}"
             alt="navbar brand"
             class="navbar-brand"
             height="20"
@@ -27,8 +27,9 @@
     </div>
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
       <div class="sidebar-content">
+        
         <ul class="nav nav-secondary">
-          <li class="nav-item active">
+          <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
             <a
               href="/dashboard"
               class="collapsed"
@@ -48,63 +49,63 @@
               </ul>
             </div> --}}
           </li>
-          <li class="nav-item active">
+          <li class="nav-item {{ Request::is('categories') ? 'active' : '' }}">
             <a
               href="/categories"
               class="collapsed"
               aria-expanded="false"
             >
-              <i class="fas fa-home"></i>
+            <i class="fas fa-book-open"></i>
               <p>categories</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item {{ Request::is('orders') ? 'active' : '' }}">
             <a
               href="/orders"
               class="collapsed"
               aria-expanded="false"
             >
-              <i class="fas fa-home"></i>
+              <i class="fas fa-cart-arrow-down"></i>
               <p>orders</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item {{ Request::is('copuns') ? 'active' : '' }}">
             <a
               href="/copuns"
               class="collapsed"
               aria-expanded="false"
             >
-              <i class="fas fa-home"></i>
+              <i class="fas fa-tag"></i>
               <p>copuns</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item {{ Request::is('products') ? 'active' : '' }}">
             <a
               href="/products"
               class="collapsed"
               aria-expanded="false"
             >
-              <i class="fas fa-home"></i>
+              <i class="fas fa-box"></i>
               <p>products</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item {{ Request::is('reviews') ? 'active' : '' }}">
             <a
               href="/reviews"
               class="collapsed"
               aria-expanded="false"
             >
-              <i class="fas fa-home"></i>
+              <i class="fab fa-rocketchat"></i>
               <p>reviews</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item {{ Request::is('users') ? 'active' : '' }}">
             <a
               href="/users"
               class="collapsed"
               aria-expanded="false"
             >
-              <i class="fas fa-home"></i>
+              <i class="fas fa-user"></i>
               <p>users</p>
             </a>
           </li>

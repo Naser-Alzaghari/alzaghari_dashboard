@@ -40,6 +40,30 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/copuns', function () {
+        return view('admin/copuns');
+    })->middleware(['auth', 'verified'])->name('dashboard');
+    
+    Route::get('/orders', function () {
+        return view('admin/orders');
+    })->middleware(['auth', 'verified'])->name('dashboard');
+
+    Route::resource('users', UserController::class);
+    Route::post('/users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
+    Route::get('/api/sales', [DashboardController::class, 'getMonthlySales']);
+
+    Route::resource('products', ProductController::class);
+    
+    // Route to display the add stock form
+    Route::get('/products/{id}/addStockForm', [ProductController::class, 'addStockForm'])->name('products.addStockForm');
+    Route::put('/products/{id}/add-stock', [ProductController::class, 'addStock'])->name('products.addStock');
+
+    Route::resource('reviews', ReviewController::class);
+    Route::get('/reviews/{review}/toggle', [ReviewController::class, 'toggle'])->name('reviews.toggle');
+
+    Route::resource('categories', CategoryController::class);
+    Route::resource('orders', OrderController::class);
 });
 
 // Route::get('/categories', function () {
@@ -54,13 +78,7 @@ Route::middleware('auth')->group(function () {
 //     return view('admin/reviews');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/copuns', function () {
-    return view('admin/copuns');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/orders', function () {
-    return view('admin/orders');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::get('/profile', function () {
 //     return view('profile/edit');
@@ -70,17 +88,7 @@ Route::get('/orders', function () {
 //     return view('admin/users/index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('users', UserController::class);
-Route::post('/users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
-Route::get('/api/sales', [DashboardController::class, 'getMonthlySales']);
 
-Route::resource('products', ProductController::class);
-
-Route::resource('reviews', ReviewController::class);
-Route::get('/reviews/{review}/toggle', [ReviewController::class, 'toggle'])->name('reviews.toggle');
-
-Route::resource('categories', CategoryController::class);
-Route::resource('orders', OrderController::class);
 
 // Route::get('/orders', function () {
 //     return view('admin/orders');

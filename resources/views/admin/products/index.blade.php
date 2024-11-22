@@ -112,8 +112,10 @@
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>role</th>
+                        <th>category</th>
+                        <th>price</th>
+                        <th>color</th>
+                        <th>stock</th>
                         <th style="width: 10%">Action</th>
                       </tr>
                     </thead>
@@ -122,6 +124,8 @@
                         <th>Name</th>
                         <th>category</th>
                         <th>price</th>
+                        <th>color</th>
+                        <th>stock</th>
                         <th>Action</th>
                       </tr>
                     </tfoot>
@@ -131,6 +135,24 @@
                         <td>{{$product->name}}</td>
                         <td>{{$product->category->name}}</td>
                         <td>{{$product->price}}</td>
+                        <td>@if(isset($product->colors[0]->name)) {{$product->colors[0]->name}} @endif</td>
+                        <td>
+
+                            @if (isset($product->colors[0]))
+                                @foreach ($product->colors as $color)
+                                {{$color->name}}{{"->"}}{{$color->pivot->stock}}<br>
+                                @endforeach
+                                {{"total ->"}}{{$product->stock}}<br>
+                            @endif
+
+                            @if(!isset($product->colors[0]))
+                            {{$product->stock}}
+                            @endif
+                            
+                        
+                        
+                        
+                        </td>
                         <td>
                           <div class="form-button-action">
                             <a
@@ -139,6 +161,16 @@
                               data-bs-toggle="tooltip"
                               title=""
                               class="btn btn-link btn-primary btn-lg"
+                              data-original-title="Edit Task"
+                            >
+                              <i class="fa fa-edit"></i>
+                            </a>
+                            <a
+                              href="{{ route('products.addStockForm', $product->id) }}"
+                              type="button"
+                              data-bs-toggle="tooltip"
+                              title=""
+                              class="btn btn-link btn-success btn-lg"
                               data-original-title="Edit Task"
                             >
                               <i class="fa fa-edit"></i>

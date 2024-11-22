@@ -6,6 +6,7 @@
       <div
         class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
       >
+      
         <div>
           <h3 class="fw-bold mb-3">Dashboard</h3>
           <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Dashboard</h6>
@@ -103,34 +104,14 @@
       </div>
       <div class="row">
         <div class="col-md-8">
-          <div class="card card-round">
+          <div class="card">
             <div class="card-header">
-              <div class="card-head-row">
-                <div class="card-title">User Statistics</div>
-                <div class="card-tools">
-                  <a
-                    href="#"
-                    class="btn btn-label-success btn-round btn-sm me-2"
-                  >
-                    <span class="btn-label">
-                      <i class="fa fa-pencil"></i>
-                    </span>
-                    Export
-                  </a>
-                  <a href="#" class="btn btn-label-info btn-round btn-sm">
-                    <span class="btn-label">
-                      <i class="fa fa-print"></i>
-                    </span>
-                    Print
-                  </a>
-                </div>
-              </div>
+              <div class="card-title">Bar Chart</div>
             </div>
             <div class="card-body">
-              <div class="chart-container" style="min-height: 375px">
-                <canvas id="statisticsChart"></canvas>
+              <div class="chart-container">
+                <canvas id="salesChart"></canvas>
               </div>
-              <div id="myChartLegend"></div>
             </div>
           </div>
         </div>
@@ -622,4 +603,29 @@
       </div>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx1 = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(ctx1, {
+        type: 'bar', // or 'line' if you prefer
+        data: {
+            labels: {!! json_encode($months) !!},
+            datasets: [{
+                label: 'Sales',
+                data: {!! json_encode($sales) !!},
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 @endsection

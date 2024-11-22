@@ -56,14 +56,7 @@ class ProductController extends Controller
         ]);
 
         // Attach colors to the product
-        if ($request->has('color_id')) {
-            ProductColor::create([
-                'product_id' => $product->id,
-                'color_id' => $request->color_id,
-                'stock' => $request->stock,
-            ]);
-
-        }
+        $product->colors()->attach($request->colors);
         
         return redirect()->route('products.index')->with('success', 'product created successfully.');
     }
@@ -77,9 +70,24 @@ class ProductController extends Controller
     // Show the form for editing the specified product
     public function edit(Product $product)
     {
+        $colors = Color::all();
         $categories = Category::all();
-        return view('admin.products.create', compact('product', 'categories'));
+        return view('admin.products.create', compact('product', 'categories','colors'));
     }
+
+    public function addStockForm(Product $product)
+    {
+        return view('admin.products.addStock', compact('product'));
+    }
+
+
+    public function addStock(Request $request, Product $product)
+    {
+        return view('admin.products.addStock', compact('product'));
+    }
+
+    
+
 
     // Update the specified user in the database
     public function update(Request $request, Product $product)
@@ -97,6 +105,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $product->stock = $request->stock;
+        $product->colors()->sync($request->input('colors', []));
         $product->category_id = $request->category_id;
         $product->save();
 

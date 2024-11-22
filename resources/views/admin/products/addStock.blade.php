@@ -26,11 +26,11 @@
         </ul>
       </div>
       <div class="row">
-        <form action="{{ !isset($product) ? route('products.store') : route('products.update', $product) }}" method="POST" class="col-md-12">
+        <form action="{{ route('products.addStock', $product) }}" method="POST" class="col-md-12">
             @csrf
-            @if(isset($product))
+            
                 @method('PUT') <!-- Only include PUT if $product is set (edit mode) -->
-            @endif
+            
           <div class="card">
             <div class="card-header">
               <div class="card-title">Form Elements</div>
