@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('product_id')->nullable()->index('product_id');
-            $table->integer('user_id')->nullable()->index('user_id');
-            $table->integer('rating')->nullable();
-            $table->text('comment')->nullable();
+            $table->string('name', 100)->nullable()->unique('name');
+            $table->text('description')->nullable();
             $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('categories');
     }
 };

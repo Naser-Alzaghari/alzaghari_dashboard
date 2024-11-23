@@ -26,7 +26,7 @@
         </ul>
       </div>
       <div class="row">
-        <form action="{{ !isset($product) ? route('products.store') : route('products.update', $product) }}" method="POST" class="col-md-12">
+        <form action="{{ !isset($product) ? route('products.store') : route('products.update', $product) }}" method="POST" class="col-md-12" enctype="multipart/form-data">
             @csrf
             @if(isset($product))
                 @method('PUT') <!-- Only include PUT if $product is set (edit mode) -->
@@ -106,7 +106,24 @@
                     
 
 
-                    
+                    <div class="form-group">
+                        <label>Example file input</label>
+                        <input type="file" class="form-control-file" name="images[]" multiple>
+                      </div>
+
+                    @if (isset($product))
+                    @foreach($product->images as $image)
+                    <div>
+                        <div class="avatar">
+                            <img src="{{ asset('storage/' . $image->image_url) }}" alt="{{ $product->name }}" class="avatar-img rounded">
+                        </div>
+                        <label>
+                            <input type="checkbox" name="delete_images[]" value="{{ $image->id }}">
+                            Delete
+                        </label>
+                    </div>
+                    @endforeach
+                    @endif
 
                     </div>
                     

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductColor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -42,6 +43,7 @@ class ProductController extends Controller
         //         'email' => 'required|string|email|max:255|unique:users',
         //         'password' => 'required|string|min:8|confirmed',
         //         'role_as' => 'nullable|integer', // 'role_as' is optional
+        //          'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         //     ]);
         // } catch (\Illuminate\Validation\ValidationException $e) {
         //     return redirect()->back()->withErrors($e->validator)->withInput();
@@ -54,6 +56,13 @@ class ProductController extends Controller
             'stock' => $request->stock,
             'category_id' => $request->category_id,
         ]);
+        if ($request->hasFile('images')) {
+            
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('images', 'public');
+                $product->images()->create(['image_url' => $imagePath]);
+            }
+        }
 
         // Attach colors to the product
         $product->colors()->attach($request->colors);
@@ -92,7 +101,6 @@ class ProductController extends Controller
     // Update the specified user in the database
     public function update(Request $request, Product $product)
     {
-        
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
@@ -107,6 +115,27 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->colors()->sync($request->input('colors', []));
         $product->category_id = $request->category_id;
+
+        // Delete selected images
+        if ($request->has('delete_images')) {
+            foreach ($request->delete_images as $imageId) {
+                $image = $product->images()->find($imageId);
+                if ($image) {
+                    // Delete the file from storage
+                    Storage::disk('public')->delete($image->image_url);
+                    // Delete the record from the database
+                    $image->delete();
+                }
+            }
+        }
+
+        // Upload and save new images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('images', 'public');
+                $product->images()->create(['image_url' => $imagePath]);
+            }
+        }
         $product->save();
 
         return redirect()->route('products.index')->with('success', 'product updated successfully.');

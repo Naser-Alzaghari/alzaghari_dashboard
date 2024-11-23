@@ -18,7 +18,7 @@ class Order extends Model
     }
 
     // One-to-Many relationship with OrderItems
-    public function items()
+    public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }

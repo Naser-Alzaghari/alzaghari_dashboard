@@ -116,6 +116,7 @@
                         <th>price</th>
                         <th>color</th>
                         <th>stock</th>
+                        <th>image</th>
                         <th style="width: 10%">Action</th>
                       </tr>
                     </thead>
@@ -126,6 +127,7 @@
                         <th>price</th>
                         <th>color</th>
                         <th>stock</th>
+                        <th>image</th>
                         <th>Action</th>
                       </tr>
                     </tfoot>
@@ -148,11 +150,13 @@
                             @if(!isset($product->colors[0]))
                             {{$product->stock}}
                             @endif
-                            
-                        
-                        
-                        
                         </td>
+
+                        <td>@foreach($product->images as $image)
+                            <div class="avatar">
+                                <img src="{{ asset('storage/' . $image->image_url) }}" alt="{{ $product->name }}" class="avatar-img rounded">
+                            </div>
+                        @endforeach</td>
                         <td>
                           <div class="form-button-action">
                             <a

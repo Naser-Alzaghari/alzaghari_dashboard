@@ -60,7 +60,8 @@ class OrderController extends Controller
     // Display the specified user
     public function show(Order $order)
     {
-        return view('orders.show', compact('order'));
+        $order = Order::with('orderItems')->findOrFail($order->id);
+        return view('admin.orders.show', compact('order'));
     }
 
     // Show the form for editing the specified Order

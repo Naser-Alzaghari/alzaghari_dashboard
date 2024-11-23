@@ -31,7 +31,7 @@ class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bo
         </form>
       </ul>
     </li>
-    <li class="nav-item topbar-icon dropdown hidden-caret">
+    {{-- <li class="nav-item topbar-icon dropdown hidden-caret">
       <a
         class="nav-link dropdown-toggle"
         href="#"
@@ -277,7 +277,7 @@ class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bo
           </div>
         </div>
       </div>
-    </li>
+    </li> --}}
 
     <li class="nav-item topbar-user dropdown hidden-caret">
       <a

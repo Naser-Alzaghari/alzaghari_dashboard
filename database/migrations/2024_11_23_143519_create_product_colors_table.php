@@ -16,7 +16,9 @@ return new class extends Migration
             $table->integer('product_id')->nullable()->index('product_id');
             $table->integer('color_id')->nullable()->index('color_id');
             $table->integer('stock')->nullable();
-            $table->string('image_url')->nullable();
+            $table->string('image_url', 191)->nullable();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

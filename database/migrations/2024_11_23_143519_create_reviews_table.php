@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->integer('id', true);
+            $table->integer('product_id')->nullable()->index('product_id');
             $table->integer('user_id')->nullable()->index('user_id');
-            $table->timestamp('order_date')->nullable()->useCurrent();
-            $table->enum('status', ['pending', 'shipped', 'delivered', 'cancelled'])->nullable()->default('pending');
-            $table->decimal('total_amount', 10)->nullable();
-            $table->enum('payment_status', ['paid', 'unpaid'])->nullable()->default('unpaid');
-            $table->date('pickup_date');
+            $table->integer('rating')->nullable();
+            $table->text('comment')->nullable();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->boolean('is_active')->default(false);
+            $table->softDeletes();
             $table->timestamp('updated_at');
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('reviews');
     }
 };

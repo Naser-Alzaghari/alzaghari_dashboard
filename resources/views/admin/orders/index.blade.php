@@ -115,8 +115,8 @@
                         <th>order_date</th>
                         <th>total_amount</th>
                         <th>after discount</th>
-                        <th>status</th>
-                        <th>payment_status</th>
+                        {{-- <th>status</th>
+                        <th>payment_status</th> --}}
                         <th style="width: 10%">Action</th>
                       </tr>
                     </thead>
@@ -126,8 +126,8 @@
                         <th>order_date</th>
                         <th>total_amount</th>
                         <th>after discount</th>
-                        <th>status</th>
-                        <th>payment_status</th>
+                        {{-- <th>status</th>
+                        <th>payment_status</th> --}}
                         <th>Action</th>
                       </tr>
                     </tfoot>
@@ -138,8 +138,8 @@
                         <td>{{$order->order_date}}</td>
                         <td>{{$order->total_amount}}</td>
                         <td>{{$order->total_amount_after_discount}}</td>
-                        <td>{{$order->status}}</td>
-                        <td>{{$order->payment_status}}</td>
+                        {{-- <td>{{$order->status}}</td>
+                        <td>{{$order->payment_status}}</td> --}}
                         <td>
                           <div class="form-button-action">
                             <a
@@ -152,6 +152,20 @@
                             >
                               <i class="fa fa-edit"></i>
                             </a>
+
+                            <a
+                              href="{{ route('orders.show', $order) }}"
+                              type="button"
+                              data-bs-toggle="tooltip"
+                              title=""
+                              class="btn btn-link btn-primary btn-lg"
+                              data-original-title="Edit Task"
+                            >
+                            <i class="fas fa-arrow-alt-circle-right"></i>
+
+                            </a>
+
+
                             <!-- Delete Button -->
                           <form action="{{ route('orders.destroy', $order->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?');">
                             @csrf

@@ -69,7 +69,7 @@
               <p>orders</p>
             </a>
           </li>
-          <li class="nav-item {{ Request::is('copuns') ? 'active' : '' }}">
+          <li class="nav-item {{ Request::is('coupons') ? 'active' : '' }}">
             <a
               href="/coupons"
               class="collapsed"

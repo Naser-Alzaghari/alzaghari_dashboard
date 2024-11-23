@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('colors', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->string('color_name', 50)->nullable()->unique('color_name');
+            $table->string('name', 50)->nullable()->unique('color_name');
             $table->char('hex_code', 7)->nullable();
         });
     }
