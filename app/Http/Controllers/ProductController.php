@@ -36,18 +36,16 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         
-        // try {
-        //     // Validate the request data
-        //     $request->validate([
-        //         'name' => 'required|string|max:255',
-        //         'email' => 'required|string|email|max:255|unique:users',
-        //         'password' => 'required|string|min:8|confirmed',
-        //         'role_as' => 'nullable|integer', // 'role_as' is optional
-        //          'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        //     ]);
-        // } catch (\Illuminate\Validation\ValidationException $e) {
-        //     return redirect()->back()->withErrors($e->validator)->withInput();
-        // }
+        
+            // Validate the request data
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'description' => 'required|string|max:255',
+                'stock' => 'required',
+                'category_id' => 'required',
+                'price' => 'required',
+            ]);
+        
         
         $product = Product::create([
             'name' => $request->name,
@@ -65,7 +63,8 @@ class ProductController extends Controller
         }
 
         // Attach colors to the product
-        $product->colors()->attach($request->colors);
+
+        $product->colors()->attach($request->colors, ['stock' => $request->stock]);
         
         return redirect()->route('products.index')->with('success', 'product created successfully.');
     }
