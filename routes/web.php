@@ -81,6 +81,138 @@ Route::prefix('admin')
 
 
 
+    Route::prefix('')
+    ->group(function () {
+            Route::get('/', function () {
+                return view('user/master');
+            });
+
+            Route::get('/master', function () {
+                return view('user/master');
+            });
+            
+            Route::get('/wishlist', function () {
+                return view('user/wishlist');
+            });
+            
+            Route::get('/contact-us', function () {
+                return view('user/contact-us');
+            });
+            
+            
+            Route::get('/about-us', function () {
+                return view('user/about-us');
+            });
+            Route::get('/blog-masonary', function () {
+                return view('user/blog-masonary');
+            });
+            Route::get('/blog-no-sidebar', function () {
+                return view('user/blog-no-sidebar');
+            });
+            Route::get('/blog-standard', function () {
+                return view('user/blog-standard');
+            });
+            Route::get('/blog', function () {
+                return view('user/blog');
+            });
+            Route::get('/cart', function () {
+                return view('user/cart');
+            });
+            Route::get('/checkout', function () {
+                return view('user/checkout');
+            });
+            Route::get('/coming-soon', function () {
+                return view('user/coming-soon');
+            });
+            Route::get('/compare', function () {
+                return view('user/compare');
+            });
+            Route::get('/contact-us', function () {
+                return view('user/contact-us');
+            });
+            Route::get('/faqs-page', function () {
+                return view('user/faqs-page');
+            });
+            Route::get('/login-register', function () {
+                return view('user/login-register');
+            });
+            Route::get('/my-account', function () {
+                return view('user/my-account');
+            });
+            Route::get('/order-tracking', function () {
+                return view('user/order-tracking');
+            });
+            Route::get('/product-details-02', function () {
+                return view('user/product-details-02');
+            });
+            Route::get('/product-details-affiliate', function () {
+                return view('user/product-details-affiliate');
+            });
+            Route::get('/product-details-configurable', function () {
+                return view('user/product-details-configurable');
+            });
+            Route::get('/product-details-gallery', function () {
+                return view('user/product-details-gallery');
+            });
+            Route::get('/product-details-grouped', function () {
+                return view('user/product-details-grouped');
+            });
+            Route::get('/product-details-sidebar', function () {
+                return view('user/product-details-sidebar');
+            });
+            Route::get('/product-details-sticky', function () {
+                return view('user/product-details-sticky');
+            });
+            Route::get('/product-details', function () {
+                return view('user/product-details');
+            });
+            Route::get('/shop-collections', function () {
+                return view('user/shop-collections');
+            });
+            Route::get('/shop-fullwidth', function () {
+                return view('user/shop-fullwidth');
+            });
+            Route::get('/shop-instagram', function () {
+                return view('user/shop-instagram');
+            });
+            Route::get('/shop-list', function () {
+                return view('user/shop-list');
+            });
+            Route::get('/shop-no-gutter', function () {
+                return view('user/shop-no-gutter');
+            });
+            Route::get('/shop-sidebar', function () {
+                return view('user/shop-sidebar');
+            });
+            Route::get('/shop-three-column', function () {
+                return view('user/shop-three-column');
+            });
+            Route::get('/shop-two-column', function () {
+                return view('user/shop-two-column');
+            });
+            Route::get('/single-post-sidebar', function () {
+                return view('user/single-post-sidebar');
+            });
+            Route::get('/single-post', function () {
+                return view('user/single-post');
+            });
+            Route::get('/team', function () {
+                return view('user/team');
+            });
+            Route::get('/welcome', function () {
+                return view('user/welcome');
+            });
+        
+    });
+
+    
+    
+    
+
+
+
+
+
 
 
 
