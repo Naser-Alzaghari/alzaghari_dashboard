@@ -26,7 +26,7 @@
         </ul>
       </div>
       <div class="row">
-        <form action="{{ !isset($category) ? route('categories.store') : route('categories.update', $category) }}" method="POST" class="col-md-12">
+        <form action="{{ !isset($category) ? route('admin.categories.store') : route('admin.categories.update', $category) }}" method="POST" class="col-md-12">
             @csrf
             @if(isset($category))
                 @method('PUT') <!-- Only include PUT if $category is set (edit mode) -->
@@ -67,7 +67,7 @@
             </div>
             <div class="card-action">
               <button type="submit" class="btn btn-success">Submit</button>
-              <a href="/categories" type="button" class="btn btn-danger">Cancel</a>
+              <a href="{{route("admin.categories")}}" type="button" class="btn btn-danger">Cancel</a>
             </div>
           </div>
         </div>

@@ -26,7 +26,7 @@
         </ul>
       </div>
       <div class="row">
-        <form action="{{ route('products.addStock', $product) }}" method="POST" class="col-md-12">
+        <form action="{{ route('admin.products.addStock', $product) }}" method="POST" class="col-md-12">
             @csrf
             
                 @method('PUT') <!-- Only include PUT if $product is set (edit mode) -->
@@ -122,7 +122,7 @@
             </div>
             <div class="card-action">
               <button type="submit" class="btn btn-success">Submit</button>
-              <a href="/products" type="button" class="btn btn-danger">Cancel</a>
+              <a href="{{route('admin.products')}}" type="button" class="btn btn-danger">Cancel</a>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -37,7 +37,7 @@ class CategoryController extends Controller
         ]);
 
         
-        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
+        return redirect()->route('admin.categories')->with('success', 'Category created successfully.');
     }
 
     // Display the specified user
@@ -65,7 +65,7 @@ class CategoryController extends Controller
         $category->description = $request->description;
         $category->save();
 
-        return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
+        return redirect()->route('admin.categories')->with('success', 'Category updated successfully.');
     }
 
     // Remove the specified user from the database
@@ -73,13 +73,13 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete(); // Soft delete
-        return redirect()->route('categories.index')->with('success', 'Category soft-deleted successfully!');
+        return redirect()->route('admin.categories')->with('success', 'Category soft-deleted successfully!');
     }
 
 //     public function restore($id)
 // {
 //     $category = User::onlyTrashed()->findOrFail($id);
 //     $category->restore(); // Restore the user
-//     return redirect()->route('users.trashed')->with('success', 'User restored successfully!');
+//     return redirect()->route('admin.users.trashed')->with('success', 'User restored successfully!');
 // }
 }

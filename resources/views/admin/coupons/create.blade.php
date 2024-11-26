@@ -26,7 +26,7 @@
         </ul>
       </div>
       <div class="row">
-        <form action="{{ !isset($coupon) ? route('coupons.store') : route('coupons.update', $coupon) }}" method="POST" class="col-md-12">
+        <form action="{{ !isset($coupon) ? route('admin.coupons.store') : route('admin.coupons.update', $coupon) }}" method="POST" class="col-md-12">
             @csrf
             @if(isset($coupon))
                 @method('PUT') <!-- Only include PUT if $coupon is set (edit mode) -->
@@ -76,7 +76,7 @@
             </div>
             <div class="card-action">
               <button type="submit" class="btn btn-success">Submit</button>
-              <a href="/coupons" type="button" class="btn btn-danger">Cancel</a>
+              <a href="{{route('admin.coupons')}}" type="button" class="btn btn-danger">Cancel</a>
             </div>
           </div>
         </div>

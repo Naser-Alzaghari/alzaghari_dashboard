@@ -26,7 +26,7 @@
         </ul>
       </div>
       <div class="row">
-        <form action="{{ !isset($user) ? route('users.store') : route('users.update', $user) }}" method="POST" class="col-md-12">
+        <form action="{{ !isset($user) ? route('admin.users.store') : route('admin.users.update', $user) }}" method="POST" class="col-md-12">
             @csrf
             @if(isset($user))
                 @method('PUT') <!-- Only include PUT if $user is set (edit mode) -->
@@ -106,7 +106,7 @@
             </div>
             <div class="card-action">
               <button type="submit" class="btn btn-success">Submit</button>
-              <a href="/users" type="button" class="btn btn-danger">Cancel</a>
+              <a href="{{route('admin.users')}}" type="button" class="btn btn-danger">Cancel</a>
             </div>
           </div>
         </div>

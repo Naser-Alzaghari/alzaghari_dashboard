@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
 use App\Models\Review;
 use Illuminate\Http\Request;
 
@@ -34,7 +34,7 @@ class ReviewController extends Controller
     {
         $review = Review::findOrFail($id);
         $review->delete(); // Soft delete
-        return redirect()->route('reviews.index')->with('success', 'review soft-deleted successfully!');
+        return redirect()->route('admin.reviews')->with('success', 'review soft-deleted successfully!');
     }
 
     public function toggle(Request $request, Review $review){
@@ -43,7 +43,7 @@ class ReviewController extends Controller
         
         $review->save();
 
-        return redirect()->route('reviews.index')->with('success', 'review updated successfully.');
+        return redirect()->route('admin.reviews')->with('success', 'review updated successfully.');
     }
 
 
@@ -51,6 +51,6 @@ class ReviewController extends Controller
 // {
 //     $review = review::onlyTrashed()->findOrFail($id);
 //     $review->restore(); // Restore the review
-//     return redirect()->route('reviews.trashed')->with('success', 'review restored successfully!');
+//     return redirect()->route('admin.reviews.trashed')->with('success', 'review restored successfully!');
 // }
 }

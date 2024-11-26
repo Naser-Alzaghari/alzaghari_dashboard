@@ -8,7 +8,7 @@
               <div class="card-header">
                 <div class="d-flex align-items-center">
                   <h4 class="card-title">Add Row</h4>
-                  <a href="{{ route('products.create') }}"
+                  <a href="{{ route('admin.products.create') }}"
                     class="btn btn-primary btn-round ms-auto"
                   >
                     <i class="fa fa-plus"></i>
@@ -160,7 +160,7 @@
                         <td>
                           <div class="form-button-action">
                             <a
-                              href="{{ route('products.edit', $product) }}"
+                              href="{{ route('admin.products.edit', $product) }}"
                               type="button"
                               data-bs-toggle="tooltip"
                               title=""
@@ -170,7 +170,7 @@
                               <i class="fa fa-edit"></i>
                             </a>
                             {{-- <a
-                              href="{{ route('products.addStockForm', $product->id) }}"
+                              href="{{ route('admin.products.addStockForm', $product->id) }}"
                               type="button"
                               data-bs-toggle="tooltip"
                               title=""
@@ -180,7 +180,7 @@
                               <i class="fa fa-edit"></i>
                             </a> --}}
                             <!-- Delete Button -->
-                          <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                          <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
                             @csrf
                             @method('DELETE') <!-- Spoof the DELETE method -->
                             <button
@@ -193,7 +193,7 @@
                               <i class="fa fa-times"></i>
                             </button>
                         </form>
-                        {{-- <form action="{{ route('products.restore', $product->id) }}" method="POST">
+                        {{-- <form action="{{ route('admin.products.restore', $product->id) }}" method="POST">
                           @csrf
                           <button type="submit" class="btn btn-success">Restore</button>
                       </form> --}}

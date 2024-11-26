@@ -26,7 +26,7 @@
         </ul>
       </div>
       <div class="row">
-        <form action="{{ !isset($product) ? route('products.store') : route('products.update', $product) }}" method="POST" class="col-md-12" enctype="multipart/form-data">
+        <form action="{{ !isset($product) ? route('admin.products.store') : route('admin.products.update', $product) }}" method="POST" class="col-md-12" enctype="multipart/form-data">
             @csrf
             @if(isset($product))
                 @method('PUT') <!-- Only include PUT if $product is set (edit mode) -->
@@ -139,7 +139,7 @@
             </div>
             <div class="card-action">
               <button type="submit" class="btn btn-success">Submit</button>
-              <a href="/products" type="button" class="btn btn-danger">Cancel</a>
+              <a href="{{route('admin.products')}}" type="button" class="btn btn-danger">Cancel</a>
             </div>
           </div>
         </div>

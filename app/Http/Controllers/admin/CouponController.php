@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
 
@@ -29,7 +29,7 @@ class CouponController extends Controller
         // ]);
 
         Coupon::create($request->all());
-        return redirect()->route('coupons.index')->with('success', 'Coupon created successfully.');
+        return redirect()->route('admin.coupons')->with('success', 'Coupon created successfully.');
     }
 
     public function show($id)
@@ -57,7 +57,7 @@ class CouponController extends Controller
         ]);
 
         $coupon->update($request->all());
-        return redirect()->route('coupons.index')->with('success', 'Coupon updated successfully.');
+        return redirect()->route('admin.coupons')->with('success', 'Coupon updated successfully.');
     }
 
     public function destroy($id)
@@ -65,7 +65,7 @@ class CouponController extends Controller
         $coupon = Coupon::findOrFail($id);
         $coupon->delete();
 
-        return redirect()->route('coupons.index')->with('success', 'Coupon deleted successfully.');
+        return redirect()->route('admin.coupons')->with('success', 'Coupon deleted successfully.');
     }
 
 
@@ -75,6 +75,6 @@ class CouponController extends Controller
         
         $coupon->save();
 
-        return redirect()->route('coupons.index')->with('success', 'coupon updated successfully.');
+        return redirect()->route('admin.coupons')->with('success', 'coupon updated successfully.');
     }
 }

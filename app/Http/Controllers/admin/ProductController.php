@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\Category;
@@ -66,7 +66,7 @@ class ProductController extends Controller
 
         $product->colors()->attach($request->colors, ['stock' => $request->stock]);
         
-        return redirect()->route('products.index')->with('success', 'product created successfully.');
+        return redirect()->route('admin.products')->with('success', 'product created successfully.');
     }
 
     // Display the specified user
@@ -137,7 +137,7 @@ class ProductController extends Controller
         }
         $product->save();
 
-        return redirect()->route('products.index')->with('success', 'product updated successfully.');
+        return redirect()->route('admin.products')->with('success', 'product updated successfully.');
     }
 
     // Remove the specified user from the database
@@ -145,7 +145,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->delete(); // Soft delete
-        return redirect()->route('products.index')->with('success', 'product soft-deleted successfully!');
+        return redirect()->route('admin.products')->with('success', 'product soft-deleted successfully!');
     }
 
 //     public function restore($id)

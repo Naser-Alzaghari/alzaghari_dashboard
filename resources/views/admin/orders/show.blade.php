@@ -30,7 +30,7 @@
                 </table>
             </div>
         </div>
-        <a href="/orders" type="button" class="btn btn-danger">back</a>
+        <a href="{{route('admin.orders')}}" type="button" class="btn btn-danger">back</a>
     </div>
     
   </div>

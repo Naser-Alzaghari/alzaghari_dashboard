@@ -123,14 +123,14 @@
                         <td>{{$review->is_active}}</td>
                         <td>
                           <div class="form-button-action">
-                            <form action="{{ route('reviews.toggle', $review) }}" method="POST" style="display: inline;">
+                            <form action="{{ route('admin.reviews.toggle', $review) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method("GET")
                                 <button type="submit" class="btn btn-link">{{!$review->is_active ? "Active" : "Disable"}}</button>
                             </form>
                             
                             <!-- Delete Button -->
-                          <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this review?');">
+                          <form action="{{ route('admin.reviews.destroy', $review->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this review?');">
                             @csrf
                             @method('DELETE') <!-- Spoof the DELETE method -->
                             <button
@@ -143,7 +143,7 @@
                               <i class="fa fa-times"></i>
                             </button>
                         </form>
-                        {{-- <form action="{{ route('users.restore', $user->id) }}" method="POST">
+                        {{-- <form action="{{ route('admin.users.restore', $user->id) }}" method="POST">
                           @csrf
                           <button type="submit" class="btn btn-success">Restore</button>
                       </form> --}}

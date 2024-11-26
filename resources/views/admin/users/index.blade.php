@@ -8,7 +8,7 @@
               <div class="card-header">
                 <div class="d-flex align-items-center">
                   <h4 class="card-title">Add Row</h4>
-                  <a href="{{ route('users.create') }}"
+                  <a href="{{ route('admin.users.create') }}"
                     class="btn btn-primary btn-round ms-auto"
                   >
                     <i class="fa fa-plus"></i>
@@ -134,7 +134,7 @@
                         <td>
                           <div class="form-button-action">
                             <a
-                              href="{{ route('users.edit', $user) }}"
+                              href="{{ route('admin.users.edit', $user) }}"
                               type="button"
                               data-bs-toggle="tooltip"
                               title=""
@@ -144,7 +144,7 @@
                               <i class="fa fa-edit"></i>
                             </a>
                             <!-- Delete Button -->
-                          <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                          <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
                             @csrf
                             @method('DELETE') <!-- Spoof the DELETE method -->
                             <button
@@ -157,7 +157,7 @@
                               <i class="fa fa-times"></i>
                             </button>
                         </form>
-                        {{-- <form action="{{ route('users.restore', $user->id) }}" method="POST">
+                        {{-- <form action="{{ route('admin.users.restore', $user->id) }}" method="POST">
                           @csrf
                           <button type="submit" class="btn btn-success">Restore</button>
                       </form> --}}

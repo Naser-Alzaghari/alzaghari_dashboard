@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -54,7 +54,7 @@ class OrderController extends Controller
         ]);
 
         
-        return redirect()->route('orders.index')->with('success', 'Order created successfully.');
+        return redirect()->route('admin.orders')->with('success', 'Order created successfully.');
     }
 
     // Display the specified user
@@ -90,7 +90,7 @@ class OrderController extends Controller
         $order->total_amount_after_discount = $request->total_amount_after_discount;
         $order->save();
 
-        return redirect()->route('orders.index')->with('success', 'Order updated successfully.');
+        return redirect()->route('admin.orders')->with('success', 'Order updated successfully.');
     }
 
     // Remove the specified user from the database
@@ -98,7 +98,7 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
         $order->delete(); // Soft delete
-        return redirect()->route('orders.index')->with('success', 'Order soft-deleted successfully!');
+        return redirect()->route('admin.orders')->with('success', 'Order soft-deleted successfully!');
     }
 
 //     public function restore($id)

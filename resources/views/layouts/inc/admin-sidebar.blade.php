@@ -3,7 +3,7 @@
     <div class="sidebar-logo">
       <!-- Logo Header -->
       <div class="logo-header" data-background-color="dark">
-        <a href="/dashboard" class="logo">
+        <a href="{{route('admin.dashboard')}}" class="logo">
           <img
             src="{{ asset('assets/img/logo/sidebar-logo.png')}}"
             alt="navbar brand"
@@ -31,7 +31,7 @@
         <ul class="nav nav-secondary">
           <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
             <a
-              href="/dashboard"
+              href="{{route('admin.dashboard')}}"
               class="collapsed"
               aria-expanded="false"
             >
@@ -51,7 +51,7 @@
           </li>
           <li class="nav-item {{ Request::is('categories') ? 'active' : '' }}">
             <a
-              href="/categories"
+              href="{{route('admin.categories')}}"
               class="collapsed"
               aria-expanded="false"
             >
@@ -61,7 +61,7 @@
           </li>
           <li class="nav-item {{ Request::is('orders') ? 'active' : '' }}">
             <a
-              href="/orders"
+              href="{{route('admin.orders')}}"
               class="collapsed"
               aria-expanded="false"
             >
@@ -71,7 +71,7 @@
           </li>
           <li class="nav-item {{ Request::is('coupons') ? 'active' : '' }}">
             <a
-              href="/coupons"
+              href="{{route('admin.coupons')}}"
               class="collapsed"
               aria-expanded="false"
             >
@@ -81,7 +81,7 @@
           </li>
           <li class="nav-item {{ Request::is('products') ? 'active' : '' }}">
             <a
-              href="/products"
+              href="{{route('admin.products')}}"
               class="collapsed"
               aria-expanded="false"
             >
@@ -91,7 +91,7 @@
           </li>
           <li class="nav-item {{ Request::is('reviews') ? 'active' : '' }}">
             <a
-              href="/reviews"
+              href="{{route('admin.reviews')}}"
               class="collapsed"
               aria-expanded="false"
             >
@@ -101,7 +101,7 @@
           </li>
           <li class="nav-item {{ Request::is('users') ? 'active' : '' }}">
             <a
-              href="/users"
+              href="{{route('admin.users')}}"
               class="collapsed"
               aria-expanded="false"
             >

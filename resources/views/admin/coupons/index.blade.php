@@ -8,7 +8,7 @@
               <div class="card-header">
                 <div class="d-flex align-items-center">
                   <h4 class="card-title">Add Row</h4>
-                  <a href="{{ route('coupons.create') }}"
+                  <a href="{{ route('admin.coupons.create') }}"
                     class="btn btn-primary btn-round ms-auto"
                   >
                     <i class="fa fa-plus"></i>
@@ -133,14 +133,14 @@
                         <td>{{$coupon->coupon_status}}</td>
                         <td>
                           <div class="form-button-action">
-                            <form action="{{ route('coupons.toggle', $coupon) }}" method="POST" style="display: inline;">
+                            <form action="{{ route('admin.coupons.toggle', $coupon) }}" method="POST" style="display: inline;">
                               @csrf
                               @method("patch")
                               <button type="submit" class="btn btn-link">{{!$coupon->coupon_status ? "Active" : "Disable"}}</button>
                           </form>
 
                             <!-- Delete Button -->
-                          <form action="{{ route('coupons.destroy', $coupon->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this coupon?');">
+                          <form action="{{ route('admin.coupons.destroy', $coupon->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this coupon?');">
                             @csrf
                             @method('DELETE') <!-- Spoof the DELETE method -->
                             <button
@@ -153,7 +153,7 @@
                               <i class="fa fa-times"></i>
                             </button>
                         </form>
-                        {{-- <form action="{{ route('coupons.restore', $coupon->id) }}" method="POST">
+                        {{-- <form action="{{ route('admin.coupons.restore', $coupon->id) }}" method="POST">
                           @csrf
                           <button type="submit" class="btn btn-success">Restore</button>
                       </form> --}}

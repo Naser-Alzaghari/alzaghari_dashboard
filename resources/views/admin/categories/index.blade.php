@@ -8,7 +8,7 @@
               <div class="card-header">
                 <div class="d-flex align-items-center">
                   <h4 class="card-title">Add Row</h4>
-                  <a href="{{ route('categories.create') }}"
+                  <a href="{{ route('admin.categories.create') }}"
                     class="btn btn-primary btn-round ms-auto"
                   >
                     <i class="fa fa-plus"></i>
@@ -131,7 +131,7 @@
                         <td>
                           <div class="form-button-action">
                             <a
-                              href="{{ route('categories.edit', $category) }}"
+                              href="{{ route('admin.categories.edit', $category) }}"
                               type="button"
                               data-bs-toggle="tooltip"
                               title=""
@@ -141,7 +141,7 @@
                               <i class="fa fa-edit"></i>
                             </a>
                             <!-- Delete Button -->
-                          <form action="{{ route('categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                          <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');">
                             @csrf
                             @method('DELETE') <!-- Spoof the DELETE method -->
                             <button
@@ -154,7 +154,7 @@
                               <i class="fa fa-times"></i>
                             </button>
                         </form>
-                        {{-- <form action="{{ route('categories.restore', $category->id) }}" method="POST">
+                        {{-- <form action="{{ route('admin.categories.restore', $category->id) }}" method="POST">
                           @csrf
                           <button type="submit" class="btn btn-success">Restore</button>
                       </form> --}}

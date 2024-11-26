@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -43,7 +43,7 @@ class UserController extends Controller
             'role_as' => $request->role_as,
         ]);
         
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+        return redirect()->route('admin.users')->with('success', 'User created successfully.');
     }
 
     // Display the specified user
@@ -75,7 +75,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully.');
+        return redirect()->route('admin.users')->with('success', 'User updated successfully.');
     }
 
     // Remove the specified user from the database
@@ -83,13 +83,13 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete(); // Soft delete
-        return redirect()->route('users.index')->with('success', 'User soft-deleted successfully!');
+        return redirect()->route('admin.users')->with('success', 'User soft-deleted successfully!');
     }
 
 //     public function restore($id)
 // {
 //     $user = User::onlyTrashed()->findOrFail($id);
 //     $user->restore(); // Restore the user
-//     return redirect()->route('users.trashed')->with('success', 'User restored successfully!');
+//     return redirect()->route('admin.users.trashed')->with('success', 'User restored successfully!');
 // }
 }

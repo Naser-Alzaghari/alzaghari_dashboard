@@ -314,7 +314,7 @@ class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bo
                 <p class="text-muted" style="text-overflow: ellipsis; white-space: nowrap;
 ">{{Auth::user()->email}}</p>
                 <a
-                  href="/profile"
+                  href="{{route('admin.users')}}"
                   class="btn btn-xs btn-secondary btn-sm"
                   >View Profile</a
                 >
