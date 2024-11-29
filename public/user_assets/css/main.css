@@ -18748,3 +18748,7 @@ a:hover {
 .template-color-2 .dot-style-2 .slick-dots li.slick-active button {
   border-color: #d2a35c;
   background-color: #d2a35c; }
+
+
+
+  .product-image--holder { display: flex; justify-content: center; align-items: center; height: 35rem; /* Set a fixed height for the image holder */ overflow: hidden; /* Ensure images do not overflow */ } .product-image img { height: 100%; object-fit: cover; /* Ensures the image covers the area without distortion */ }

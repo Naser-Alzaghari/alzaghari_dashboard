@@ -557,7 +557,7 @@
                                             onclick="window.location.href='cart.html'">
                                             Add To Cart
                                         </button>
-                                        <a href="wishlist.html"><i class="dl-icon-heart2"></i></a>
+                                        <a href="r"><i class="dl-icon-heart2"></i></a>
                                         <a href="compare.html"><i class="dl-icon-compare2"></i></a>
                                     </div>
                                     <div class="product-extra mb--30">

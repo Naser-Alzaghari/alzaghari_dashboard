@@ -36,24 +36,34 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         
-        
-            // Validate the request data
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'description' => 'required|string|max:255',
-                'stock' => 'required',
-                'category_id' => 'required',
-                'price' => 'required',
-            ]);
-        
-        
-        $product = Product::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'stock' => $request->stock,
-            'category_id' => $request->category_id,
+        // Validate the request
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'category_id' => 'required|integer|exists:categories,id',
+            'price' => 'required|numeric',
+            'price_after_discount' => 'nullable|numeric',
+            'stock' => 'required|integer',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate images
+            'new_color_id' => 'nullable|integer|exists:colors,id',
+            'new_color_stock' => 'nullable|integer',
         ]);
+
+        // Create product
+        $product = Product::create($validated);
+
+        // Handle color stocks
+        if ($request->has('color_stocks')) {
+            foreach ($request->input('color_stocks') as $colorId => $stock) {
+                $product->colors()->attach($colorId, ['stock' => $stock]);
+            }
+        }
+
+        if ($request->has('new_color_id') && $request->input('new_color_stock') !== null) {
+            $product->colors()->attach($request->input('new_color_id'), ['stock' => $request->input('new_color_stock')]);
+        }
+
+
         if ($request->hasFile('images')) {
             
             foreach ($request->file('images') as $image) {
@@ -62,9 +72,6 @@ class ProductController extends Controller
             }
         }
 
-        // Attach colors to the product
-
-        $product->colors()->attach($request->colors, ['stock' => $request->stock]);
         
         return redirect()->route('admin.products')->with('success', 'product created successfully.');
     }
@@ -100,20 +107,30 @@ class ProductController extends Controller
     // Update the specified user in the database
     public function update(Request $request, Product $product)
     {
-        $request->validate([
+        // Validate the request
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'price' => 'required',
+            'description' => 'nullable|string',
+            'category_id' => 'required|integer|exists:categories,id',
+            'price' => 'required|numeric',
+            'price_after_discount' => 'nullable|numeric',
+            'stock' => 'required|integer',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate images
         ]);
 
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->stock = $request->stock;
-        $product->colors()->sync($request->input('colors', []));
-        $product->category_id = $request->category_id;
+        // Update product details
+        $product->update($validated);
+
+        // Handle colors and stocks
+        if ($request->has('color_stocks')) {
+            foreach ($request->input('color_stocks') as $colorId => $stock) {
+                $product->colors()->updateExistingPivot($colorId, ['stock' => $stock]);
+            }
+        }
+
+        if ($request->has('new_color_id') && $request->input('new_color_stock') !== null) {
+            $product->colors()->attach($request->input('new_color_id'), ['stock' => $request->input('new_color_stock')]);
+        }
 
         // Delete selected images
         if ($request->has('delete_images')) {

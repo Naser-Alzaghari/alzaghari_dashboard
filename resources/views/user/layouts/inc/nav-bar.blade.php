@@ -8,144 +8,15 @@
                         <nav class="main-navigation">
                             <ul class="mainmenu">
                                 <li class="mainmenu__item menu-item-has-children megamenu-holder">
-                                    <a href="master" class="mainmenu__link">
+                                    <a href="{{route('landing_page')}}" class="mainmenu__link">
                                         <span class="mm-text">Home</span>
                                     </a>
-                                    <ul class="megamenu four-column">
-                                        <li>
-                                            <a class="megamenu-title" href="#">
-                                                <span class="mm-text">Demo Group 01</span>
-                                            </a>
-                                            <ul>
-                                                <li>
-                                                    <a href="master">
-                                                        <span class="mm-text">Demo 01</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-02.html">
-                                                        <span class="mm-text">Demo 02</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-03.html">
-                                                        <span class="mm-text">Demo 03</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-04.html">
-                                                        <span class="mm-text">Demo 04</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-05.html">
-                                                        <span class="mm-text">Demo 05</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a class="megamenu-title" href="#">
-                                                <span class="mm-text">Demo Group 02</span>
-                                            </a>
-                                            <ul>
-                                                <li>
-                                                    <a href="index-06.html">
-                                                        <span class="mm-text">Demo 06</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-07.html">
-                                                        <span class="mm-text">Demo 07</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-08.html">
-                                                        <span class="mm-text">Demo 08</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-09.html">
-                                                        <span class="mm-text">Demo 09</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-10.html">
-                                                        <span class="mm-text">Demo 10</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a class="megamenu-title" href="#">
-                                                <span class="mm-text">Demo Group 03</span>
-                                            </a>
-                                            <ul>
-                                                <li>
-                                                    <a href="index-11.html">
-                                                        <span class="mm-text">Demo 11</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-12.html">
-                                                        <span class="mm-text">Demo 12</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-13.html">
-                                                        <span class="mm-text">Demo 13</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-14.html">
-                                                        <span class="mm-text">Demo 14</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-15.html">
-                                                        <span class="mm-text">Demo 15</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a class="megamenu-title" href="#">
-                                                <span class="mm-text">Demo Group 04</span>
-                                            </a>
-                                            <ul>
-                                                <li>
-                                                    <a href="index-16.html">
-                                                        <span class="mm-text">Demo 16</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-17.html">
-                                                        <span class="mm-text">Demo 17</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-18.html">
-                                                        <span class="mm-text">Demo 18</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-19.html">
-                                                        <span class="mm-text">Demo 19</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-20.html">
-                                                        <span class="mm-text">Demo 20</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    
                                 </li>
                                 <li class="mainmenu__item menu-item-has-children">
-                                    <a href="shop-sidebar.html" class="mainmenu__link">
+                                    <a href="{{route('shop-sidebar')}}" class="mainmenu__link">
                                         <span class="mm-text">Shop</span>
-                                        <span class="tip">Hot</span>
+                                        {{-- <span class="tip">Hot</span> --}}
                                     </a>
                                     <ul class="megamenu four-column">
                                         <li>
@@ -159,7 +30,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-sidebar.html">
+                                                    <a href="{{route('shop-sidebar')}}">
                                                         <span class="mm-text">with Sidebar</span>
                                                     </a>
                                                 </li>
@@ -239,32 +110,32 @@
                                             </a>
                                             <ul>
                                                 <li>
-                                                    <a href="my-account.html">
+                                                    <a href="{{route('my-account')}}">
                                                         <span class="mm-text">My Account</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="cart.html">
+                                                    <a href="{{route('cart')}}">
                                                         <span class="mm-text">Shopping Cart</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="checkout.html">
+                                                    <a href="{{route('checkout')}}">
                                                         <span class="mm-text">Check Out</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="wishlist.html">
+                                                    <a href="{{route('wishlist')}}">
                                                         <span class="mm-text">Wishlist</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="order-tracking.html">
+                                                    <a href="{{route('order-tracking')}}">
                                                         <span class="mm-text">Order tracking</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="compare.html">
+                                                    <a href="{{route('compare')}}">
                                                         <span class="mm-text">compare</span>
                                                     </a>
                                                 </li>
@@ -275,12 +146,12 @@
                                                 <div class="megamenu-banner-image"></div>
                                                 <div class="megamenu-banner-info">
                                                     <span>
-                                                        <a href="shop-sidebar.html">woman</a>
-                                                        <a href="shop-sidebar.html">shoes</a>
+                                                        <a href="{{route('shop-sidebar')}}">woman</a>
+                                                        <a href="{{route('shop-sidebar')}}">shoes</a>
                                                     </span>
                                                     <h3>new <strong>season</strong></h3>
                                                 </div>
-                                                <a href="shop-sidebar.html" class="megamenu-banner-link"></a>
+                                                <a href="{{route('shop-sidebar')}}" class="megamenu-banner-link"></a>
                                             </div>
                                         </li>
                                     </ul>
@@ -296,17 +167,17 @@
                                     </a>
                                     <ul class="sub-menu">
                                         <li>
-                                            <a href="about-us.html">
+                                            <a href="{{route('about-us')}}">
                                                 <span class="mm-text">About Us</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="team.html">
+                                            <a href="{{route('team')}}">
                                                 <span class="mm-text">Our teams</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="contact-us.html">
+                                            <a href="{{route('contact-us')}}">
                                                 <span class="mm-text">Contact us 1</span>
                                             </a>
                                         </li>
@@ -321,19 +192,19 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="faqs-page.html">
+                                            <a href="{{route('faqs-page')}}">
                                                 <span class="mm-text">FAQs page</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="coming-soon.html">
+                                            <a href="{{route('coming-soon')}}">
                                                 <span class="mm-text">Coming Soon</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="mainmenu__item menu-item-has-children has-children">
-                                    <a href="blog.html" class="mainmenu__link">
+                                    <a href="{{route('blog')}}" class="mainmenu__link">
                                         <span class="mm-text">Blog</span>
                                     </a>
                                     <ul class="sub-menu">
@@ -360,7 +231,7 @@
                                             </a>
                                             <ul class="sub-menu">
                                                 <li>
-                                                    <a href="blog.html">
+                                                    <a href="{{route('blog')}}">
                                                         <span class="mm-text">Blog Sidebar</span>
                                                     </a>
                                                 </li>
@@ -411,7 +282,7 @@
                     </div>
                     <div class="col-lg-2 col-md-3 col-4 text-lg-center">
                         <!-- Logo Start Here -->
-                        <a href="master" class="logo-box">
+                        <a href="{{route('landing_page')}}" class="logo-box">
                             <figure class="logo--normal">
                                 <img src="user_assets/img/logo/logo.svg" alt="Logo" />
                             </figure>
@@ -435,22 +306,22 @@
                                 </a>
                                 <ul class="user-info-menu">
                                     <li>
-                                        <a href="my-account.html">My Account</a>
+                                        <a href="{{route('my-account')}}">My Account</a>
                                     </li>
                                     <li>
-                                        <a href="cart.html">Shopping Cart</a>
+                                        <a href="{{route('cart')}}">Shopping Cart</a>
                                     </li>
                                     <li>
-                                        <a href="checkout.html">Check Out</a>
+                                        <a href="{{route('checkout')}}">Check Out</a>
                                     </li>
                                     <li>
-                                        <a href="wishlist.html">Wishlist</a>
+                                        <a href="{{route('wishlist')}}">Wishlist</a>
                                     </li>
                                     <li>
-                                        <a href="order-tracking.html">Order tracking</a>
+                                        <a href="{{route('order-tracking')}}">Order tracking</a>
                                     </li>
                                     <li>
-                                        <a href="compare.html">compare</a>
+                                        <a href="{{route('compare')}}">compare</a>
                                     </li>
                                 </ul>
                             </li>
@@ -486,7 +357,7 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-4">
-                        <a href="master" class="logo-box">
+                        <a href="{{route('landing_page')}}" class="logo-box">
                             <figure class="logo--normal">
                                 <img src="user_assets/img/logo/logo.svg" alt="Logo">
                             </figure>
@@ -500,22 +371,22 @@
                                 </a>
                                 <ul class="user-info-menu">
                                     <li>
-                                        <a href="my-account.html">My Account</a>
+                                        <a href="{{route('my-account')}}">My Account</a>
                                     </li>
                                     <li>
-                                        <a href="cart.html">Shopping Cart</a>
+                                        <a href="{{route('cart')}}">Shopping Cart</a>
                                     </li>
                                     <li>
-                                        <a href="checkout.html">Check Out</a>
+                                        <a href="{{route('checkout')}}">Check Out</a>
                                     </li>
                                     <li>
-                                        <a href="wishlist.html">Wishlist</a>
+                                        <a href="{{route('wishlist')}}">Wishlist</a>
                                     </li>
                                     <li>
-                                        <a href="order-tracking.html">Order tracking</a>
+                                        <a href="{{route('order-tracking')}}">Order tracking</a>
                                     </li>
                                     <li>
-                                        <a href="compare.html">compare</a>
+                                        <a href="{{route('compare')}}">compare</a>
                                     </li>
                                 </ul>
                             </li>
@@ -543,7 +414,7 @@
                             <button class="dl-trigger">Open Menu</button>
                             <ul class="dl-menu">
                                 <li>
-                                    <a href="master">
+                                    <a href="{{route('landing_page')}}">
                                         Home
                                     </a>
                                     <ul class="dl-submenu">
@@ -553,7 +424,7 @@
                                             </a>
                                             <ul class="dl-submenu">
                                                 <li>
-                                                    <a href="master">
+                                                    <a href="{{route('landing_page')}}">
                                                         Demo 01
                                                     </a>
                                                 </li>
@@ -678,7 +549,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="shop-sidebar.html">
+                                    <a href="{{route('shop-sidebar')}}">
                                         Shop
                                         <span class="tip">Hot</span>
                                     </a>
@@ -694,7 +565,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-sidebar.html">
+                                                    <a href="{{route('shop-sidebar')}}">
                                                         <span class="mm-text">with Sidebar</span>
                                                     </a>
                                                 </li>
@@ -774,32 +645,32 @@
                                             </a>
                                             <ul class="dl-submenu">
                                                 <li>
-                                                    <a href="my-account.html">
+                                                    <a href="{{route('my-account')}}">
                                                         My Account
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="cart.html">
+                                                    <a href="{{route('cart')}}">
                                                         Shopping Cart
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="checkout.html">
+                                                    <a href="{{route('checkout')}}">
                                                         Check Out
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="wishlist.html">
+                                                    <a href="{{route('wishlist')}}">
                                                         Wishlist
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="order-tracking.html">
+                                                    <a href="{{route('order-tracking')}}">
                                                         Order tracking
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="compare.html">
+                                                    <a href="{{route('compare')}}">
                                                         compare
                                                     </a>
                                                 </li>
@@ -810,38 +681,38 @@
                                                 <div class="megamenu-banner-image"></div>
                                                 <div class="megamenu-banner-info">
                                                     <span>
-                                                        <a href="shop-sidebar.html">woman</a>
-                                                        <a href="shop-sidebar.html">shoes</a>
+                                                        <a href="{{route('shop-sidebar')}}">woman</a>
+                                                        <a href="{{route('shop-sidebar')}}">shoes</a>
                                                     </span>
                                                     <h3>new <strong>season</strong></h3>
                                                 </div>
-                                                <a href="shop-sidebar.html" class="megamenu-banner-link"></a>
+                                                <a href="{{route('shop-sidebar')}}" class="megamenu-banner-link"></a>
                                             </div>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="shop-sidebar.html">
+                                    <a href="{{route('shop-sidebar')}}">
                                         Collections
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="blog.html">
+                                    <a href="{{route('blog')}}">
                                         Pages
                                     </a>
                                     <ul class="dl-submenu">
                                         <li>
-                                            <a href="about-us.html">
+                                            <a href="{{route('about-us')}}">
                                                 About Us
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="team.html">
+                                            <a href="{{route('team')}}">
                                                 Our teams
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="contact-us.html">
+                                            <a href="{{route('contact-us')}}">
                                                 Contact us 1
                                             </a>
                                         </li>
@@ -856,19 +727,19 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="faqs-page.html">
+                                            <a href="{{route('faqs-page')}}">
                                                 FAQs page
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="coming-soon.html">
+                                            <a href="{{route('coming-soon')}}">
                                                 Coming Soon
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="blog.html">
+                                    <a href="{{route('blog')}}">
                                         Blog
                                     </a>
                                     <ul class="dl-submenu">
@@ -895,7 +766,7 @@
                                             </a>
                                             <ul class="dl-submenu">
                                                 <li>
-                                                    <a href="blog.html">
+                                                    <a href="{{route('blog')}}">
                                                         <span class="mm-text">Blog Sidebar</span>
                                                     </a>
                                                 </li>

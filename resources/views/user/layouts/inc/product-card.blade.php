@@ -1,14 +1,25 @@
-<div class="col-xl-3 col-lg-4 col-sm-6 mb--40 mb-md--30">
+
     <div class="airi-product">
         <div class="product-inner">
-            <figure class="product-image">
-                <div class="product-image--holder">
-                    <a href="product-details.html">
-                        <img src="user_assets/img/products/prod-20-1.jpg" alt="Product Image"
-                            class="primary-image">
-                        <img src="user_assets/img/products/prod-20-2.jpg" alt="Product Image"
-                            class="secondary-image">
-                    </a>
+            <figure class="product-image" >
+                <div class="
+                product-image--holder
+                ">
+                
+                <a href="{{ route('product-details') }}" class="d-flex flex-column justify-content-center align-items-center">
+                    @if ($product->images->isNotEmpty())
+                        <img src="{{ asset('storage/' . $product->images[0]->image_url) }}" alt="Product Image" class="primary-image">
+                        @if ($product->images->count() > 1)
+                            <img src="{{ asset('storage/' . $product->images[1]->image_url) }}" alt="Product Image" class="secondary-image">
+                        @else
+                            <img src="{{ asset('storage/' . $product->images[0]->image_url) }}" alt="Product Image" class="secondary-image">
+                        @endif
+                    @else
+                        <img src="{{ asset('storage/images/default_product.png')}}" alt="Product Image" class="primary-image">
+                        <img src="{{ asset('storage/images/default_product.png')}}" alt="Product Image" class="secondary-image">
+                    @endif
+                    
+                </a>                
                 </div>
                 <div class="airi-product-action">
                     <div class="product-action">
@@ -32,18 +43,67 @@
                         </a>
                     </div>
                 </div>
+                @if (isset($product->price_after_discount))
+                    <span class="product-badge sale">Sale</span>
+                @endif
+
+
+                {{-- @switch($n=rand(1,3))
+                    @case(1)
+                    <span class="product-badge new">New</span>
+                        @break
+                    @case(2)
+                    <span class="product-badge hot">hot</span>
+                        @break
+                    @case(3)
+                    <span class="product-badge sale">Sale</span>
+                        @break
+                    @default
+                        
+                @endswitch --}}
+
+                
+                
+                
             </figure>
             <div class="product-info">
                 <h3 class="product-title">
-                    <a href="product-details.html">Limited edition v-neck t-shirt</a>
+                    <a href="product-details.html">{{$product->name}}</a>
                 </h3>
-                <span class="product-price-wrapper">
-                    <span class="money">$49.00</span>
-                    <span class="product-price-old">
-                        <span class="money">$60.00</span>
+                @if (number_format($product->averageRating()) != 0)
+                <div class="product-rating">
+                    <span>
+                        @for ($i = 0; $i < number_format($product->averageRating()); $i++)
+                            <i class="dl-icon-star rated"></i>
+                        @endfor
+                        @for ($i = number_format($product->averageRating()); $i < 5; $i++)
+                            <i class="dl-icon-star"></i>
+                        @endfor
                     </span>
+                    <span class="inline-block ms-4">
+                        {{$product->ratingsCount()}} ratings
+                    </span>
+                </div>  
+                @endif
+                
+                <span class="product-price-wrapper">
+                    @if (isset($product->price_after_discount))
+                    <span class="money">{{$product->price_after_discount}}JD</span>
+                    <span class="product-price-old">
+                        <span class="money">{{$product->price}}JD</span>
+                    </span>
+                    @else
+                    <span class="money">{{$product->price}}JD</span>
+                    @endif
+                    
+                    <div class="product-color-swatch">
+                        @foreach ($product->colors as $color)
+                        <a class="product-color-swatch-btn" style="background-color: {{$color->hex_code}}">
+                            <span class="product-color-swatch-label"></span>
+                        </a>
+                        @endforeach
+                    </div>
                 </span>
             </div>
         </div>
     </div>
-</div>

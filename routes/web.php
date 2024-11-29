@@ -7,10 +7,12 @@ use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProfileController;
-use App\Http\Controllers\admin\CategoryController;
 
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\user\LandingPageController;
+use App\Http\Controllers\user\ShopSidebarController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,9 +85,7 @@ Route::prefix('admin')
 
     Route::prefix('')
     ->group(function () {
-            Route::get('/', function () {
-                return view('user/master');
-            });
+            Route::get('/', [LandingPageController::class, 'index'])->name('landing_page');
 
             Route::get('/master', function () {
                 return view('user/master');
@@ -93,19 +93,19 @@ Route::prefix('admin')
             
             Route::get('/wishlist', function () {
                 return view('user/wishlist');
-            });
+            })->name('wishlist');
             
             Route::get('/contact-us', function () {
                 return view('user/contact-us');
-            });
+            })->name('contact-us');
             
             
             Route::get('/about-us', function () {
                 return view('user/about-us');
-            });
+            })->name('about-us');
             Route::get('/blog-masonary', function () {
                 return view('user/blog-masonary');
-            });
+            })->name('blog-masonary');
             Route::get('/blog-no-sidebar', function () {
                 return view('user/blog-no-sidebar');
             });
@@ -114,34 +114,34 @@ Route::prefix('admin')
             });
             Route::get('/blog', function () {
                 return view('user/blog');
-            });
+            })->name('blog');
             Route::get('/cart', function () {
                 return view('user/cart');
-            });
+            })->name('cart');
             Route::get('/checkout', function () {
                 return view('user/checkout');
-            });
+            })->name('checkout');
             Route::get('/coming-soon', function () {
                 return view('user/coming-soon');
-            });
+            })->name('coming-soon');
             Route::get('/compare', function () {
                 return view('user/compare');
-            });
+            })->name('compare');
             Route::get('/contact-us', function () {
                 return view('user/contact-us');
-            });
+            })->name('contact-us');
             Route::get('/faqs-page', function () {
                 return view('user/faqs-page');
-            });
+            })->name('faqs-page');
             Route::get('/login-register', function () {
                 return view('user/login-register');
             });
             Route::get('/my-account', function () {
                 return view('user/my-account');
-            });
+            })->name('my-account');
             Route::get('/order-tracking', function () {
                 return view('user/order-tracking');
-            });
+            })->name('order-tracking');
             Route::get('/product-details-02', function () {
                 return view('user/product-details-02');
             });
@@ -165,7 +165,7 @@ Route::prefix('admin')
             });
             Route::get('/product-details', function () {
                 return view('user/product-details');
-            });
+            })->name('product-details');
             Route::get('/shop-collections', function () {
                 return view('user/shop-collections');
             });
@@ -181,27 +181,26 @@ Route::prefix('admin')
             Route::get('/shop-no-gutter', function () {
                 return view('user/shop-no-gutter');
             });
-            Route::get('/shop-sidebar', function () {
-                return view('user/shop-sidebar');
-            });
+            Route::get('/shop-sidebar', [ShopSidebarController::class, 'index'])->name('shop-sidebar');
             Route::get('/shop-three-column', function () {
                 return view('user/shop-three-column');
-            });
+            })->name('shop-three-column');
             Route::get('/shop-two-column', function () {
                 return view('user/shop-two-column');
-            });
+            })->name('shop-two-column');
             Route::get('/single-post-sidebar', function () {
                 return view('user/single-post-sidebar');
-            });
+            })->name('single-post-sidebar');
             Route::get('/single-post', function () {
                 return view('user/single-post');
-            });
+            })->name('single-post');
             Route::get('/team', function () {
                 return view('user/team');
-            });
+            })->name('team');
             Route::get('/welcome', function () {
                 return view('user/welcome');
-            });
+            })->name('welcome');
+            
         
     });
 
