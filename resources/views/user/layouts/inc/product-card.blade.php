@@ -6,7 +6,7 @@
                 product-image--holder
                 ">
                 
-                <a href="{{ route('product-details') }}" class="d-flex flex-column justify-content-center align-items-center">
+                <a href="{{ route('product-details', $product->id)  }}" class="d-flex flex-column justify-content-center align-items-center">
                     @if ($product->images->isNotEmpty())
                         <img src="{{ asset('storage/' . $product->images[0]->image_url) }}" alt="Product Image" class="primary-image">
                         @if ($product->images->count() > 1)
@@ -29,10 +29,22 @@
                                 <i class="dl-icon-view"></i>
                             </span>
                         </a>
-                        <a class="add_to_cart_btn action-btn" href="cart.html"
+                        {{-- <form action="{{route('cart.add')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{$product->id}}">
+                            <button class="add_to_cart_btn action-btn"
                             data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Cart">
                             <i class="dl-icon-cart29"></i>
+                            </button>
+                        </form> --}}
+
+                        <a href="#" class="add_to_cart_btn action-btn" data-product-id="{{ $product->id }}" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Cart">
+                            <i class="dl-icon-cart29"></i>
                         </a>
+                        
+                        
+                        
+                        
                         <a class="add_wishlist action-btn" href="wishlist.html"
                             data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist">
                             <i class="dl-icon-heart4"></i>
@@ -107,3 +119,7 @@
             </div>
         </div>
     </div>
+
+
+    
+

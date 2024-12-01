@@ -4,66 +4,42 @@
         <div class="mini-cart-inner">
             <h5 class="mini-cart__heading mb--40 mb-lg--30">Shopping Cart</h5>
             <div class="mini-cart__content">
-                <ul class="mini-cart__list">
-                    <li class="mini-cart__product">
+                <ul class="mini-cart__list mini-cart-items">
+                    @foreach ($cartItems as $item)
+                    <li class="mini-cart__product" data-product-id="{{$item['product']->id}}">
                         <a href="#" class="remove-from-cart remove">
                             <i class="dl-icon-close"></i>
                         </a>
                         <div class="mini-cart__product__image">
-                            <img src="user_assets/img/products/prod-17-1-70x91.jpg" alt="products">
+                            @if ($item['product']->images->isNotEmpty())
+                                <img src="{{ asset('storage/' . $item['product']->images[0]->image_url) }}" alt="Product Image">
+                            @else
+                                <img src="{{ asset('storage/images/default_product.png')}}" alt="Product Image">
+                            @endif
                         </div>
                         <div class="mini-cart__product__content">
-                            <a class="mini-cart__product__title" href="{{route('product-details')}}">Chain print bermuda
-                                shorts </a>
-                            <span class="mini-cart__product__quantity">1 x $49.00</span>
+                            <a class="mini-cart__product__title" href="{{route('product-details', $product->id)}}">{{$item['product']->name}} </a>
+                            <div class="quantity-controls">
+                                <button class="update-cart-quantity btn-decrease" data-product-id="{{ $item['product']->id }}" data-action="decrease">
+                                    <i class="{{ $item['quantity'] > 1 ? 'fa-solid fa-minus' : 'fa-solid fa-trash' }}"></i>
+                                </button>
+                                <input type="number" class="mini-cart-quantity" data-product-id="{{ $item['product']->id }}" value="{{ $item['quantity'] }}" readonly>
+                                <button class="update-cart-quantity btn-increase" data-product-id="{{ $item['product']->id }}" data-action="increase">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                            
+
                         </div>
                     </li>
-                    <li class="mini-cart__product">
-                        <a href="#" class="remove-from-cart remove">
-                            <i class="dl-icon-close"></i>
-                        </a>
-                        <div class="mini-cart__product__image">
-                            <img src="user_assets/img/products/prod-18-1-70x91.jpg" alt="products">
-                        </div>
-                        <div class="mini-cart__product__content">
-                            <a class="mini-cart__product__title" href="{{route('product-details')}}">Waxed-effect
-                                pleated skirt</a>
-                            <span class="mini-cart__product__quantity">1 x $49.00</span>
-                        </div>
-                    </li>
-                    <li class="mini-cart__product">
-                        <a href="#" class="remove-from-cart remove">
-                            <i class="dl-icon-close"></i>
-                        </a>
-                        <div class="mini-cart__product__image">
-                            <img src="user_assets/img/products/prod-19-1-70x91.jpg" alt="products">
-                        </div>
-                        <div class="mini-cart__product__content">
-                            <a class="mini-cart__product__title" href="{{route('product-details')}}">Waxed-effect
-                                pleated skirt</a>
-                            <span class="mini-cart__product__quantity">1 x $49.00</span>
-                        </div>
-                    </li>
-                    <li class="mini-cart__product">
-                        <a href="#" class="remove-from-cart remove">
-                            <i class="dl-icon-close"></i>
-                        </a>
-                        <div class="mini-cart__product__image">
-                            <img src="user_assets/img/products/prod-2-1-70x91.jpg" alt="products">
-                        </div>
-                        <div class="mini-cart__product__content">
-                            <a class="mini-cart__product__title" href="{{route('product-details')}}">Waxed-effect
-                                pleated skirt</a>
-                            <span class="mini-cart__product__quantity">1 x $49.00</span>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
                 <div class="mini-cart__total">
                     <span>Subtotal</span>
                     <span class="ammount">$98.00</span>
                 </div>
                 <div class="mini-cart__buttons">
-                    <a href="{{route('cart')}}" class="btn btn-fullwidth btn-style-1">View Cart</a>
+                    <a href="{{route('cart.view')}}" class="btn btn-fullwidth btn-style-1">View Cart</a>
                     <a href="{{route('checkout')}}" class="btn btn-fullwidth btn-style-1">Checkout</a>
                 </div>
             </div>

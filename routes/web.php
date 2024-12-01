@@ -5,7 +5,8 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\ReviewController;
-use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\ProductController as AdminProductController;
+use App\Http\Controllers\user\ProductController as UserProductController;
 use App\Http\Controllers\admin\ProfileController;
 
 use App\Http\Controllers\admin\CategoryController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\user\LandingPageController;
 use App\Http\Controllers\user\ShopSidebarController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\user\CartController;
+// use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,11 +66,11 @@ Route::prefix('admin')
             Route::post('/users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
             Route::get('/api/sales', [DashboardController::class, 'getMonthlySales']);
         
-            Route::resource('products', ProductController::class)->name('index','products');
+            Route::resource('products', AdminProductController::class)->name('index','products');
             
             // Route to display the add stock form
-            Route::get('/products/{id}/addStockForm', [ProductController::class, 'addStockForm'])->name('products.addStockForm');
-            Route::put('/products/{id}/add-stock', [ProductController::class, 'addStock'])->name('products.addStock');
+            Route::get('/products/{id}/addStockForm', [AdminProductController::class, 'addStockForm'])->name('products.addStockForm');
+            Route::put('/products/{id}/add-stock', [AdminProductController::class, 'addStock'])->name('products.addStock');
         
             Route::resource('reviews', ReviewController::class)->name('index','reviews');
             Route::get('/reviews/{review}/toggle', [ReviewController::class, 'toggle'])->name('reviews.toggle');
@@ -115,9 +118,9 @@ Route::prefix('admin')
             Route::get('/blog', function () {
                 return view('user/blog');
             })->name('blog');
-            Route::get('/cart', function () {
-                return view('user/cart');
-            })->name('cart');
+            // Route::get('/cart', function () {
+            //     return view('user/cart');
+            // })->name('cart');
             Route::get('/checkout', function () {
                 return view('user/checkout');
             })->name('checkout');
@@ -163,9 +166,11 @@ Route::prefix('admin')
             Route::get('/product-details-sticky', function () {
                 return view('user/product-details-sticky');
             });
-            Route::get('/product-details', function () {
-                return view('user/product-details');
-            })->name('product-details');
+            // routes/web.php
+            Route::get('/product/{id}', [UserProductController::class, 'show'])->name('product-details');
+            // Route::get('/product-details', function () {
+            //     return view('user/product-details');
+            // })->name('product-details');
             Route::get('/shop-collections', function () {
                 return view('user/shop-collections');
             });
@@ -200,6 +205,17 @@ Route::prefix('admin')
             Route::get('/welcome', function () {
                 return view('user/welcome');
             })->name('welcome');
+            // routes/web.php
+
+
+
+            Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+            Route::post('/update-cart-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+            Route::post('/remove-cart-item', [CartController::class, 'removeItem'])->name('cart.removeItem');
+            Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+            Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout')->middleware('auth');
+            Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('order.place')->middleware('auth');
+
             
         
     });

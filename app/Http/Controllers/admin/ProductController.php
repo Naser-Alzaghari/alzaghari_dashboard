@@ -79,7 +79,7 @@ class ProductController extends Controller
     // Display the specified user
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        return view('user.product-details', compact('product'));
     }
 
     // Show the form for editing the specified product

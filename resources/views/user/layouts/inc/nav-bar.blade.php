@@ -115,7 +115,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{route('cart')}}">
+                                                    <a href="{{route('cart.view')}}">
                                                         <span class="mm-text">Shopping Cart</span>
                                                     </a>
                                                 </li>
@@ -284,10 +284,10 @@
                         <!-- Logo Start Here -->
                         <a href="{{route('landing_page')}}" class="logo-box">
                             <figure class="logo--normal">
-                                <img src="user_assets/img/logo/logo.svg" alt="Logo" />
+                                <img src="{{asset('user_assets/img/logo/logo.svg')}}" alt="Logo" />
                             </figure>
                             <figure class="logo--transparency">
-                                <img src="user_assets/img/logo/logo-white.png" alt="Logo" />
+                                <img src="{{asset('user_assets/img/logo/logo-white.png')}}" alt="Logo" />
                             </figure>
                         </a>
                         <!-- Logo End Here -->
@@ -309,7 +309,7 @@
                                         <a href="{{route('my-account')}}">My Account</a>
                                     </li>
                                     <li>
-                                        <a href="{{route('cart')}}">Shopping Cart</a>
+                                        <a href="{{route('cart.view')}}">Shopping Cart</a>
                                     </li>
                                     <li>
                                         <a href="{{route('checkout')}}">Check Out</a>
@@ -328,7 +328,7 @@
                             <li class="header-toolbar__item">
                                 <a href="#miniCart" class="mini-cart-btn toolbar-btn">
                                     <i class="dl-icon-cart4"></i>
-                                    <sup class="mini-cart-count">2</sup>
+                                    <sup class="mini-cart-count">{{isset($cartItemCount) ? $cartItemCount : 0}}</sup>
                                 </a>
                             </li>
                             <li class="header-toolbar__item">
@@ -359,7 +359,7 @@
                     <div class="col-4">
                         <a href="{{route('landing_page')}}" class="logo-box">
                             <figure class="logo--normal">
-                                <img src="user_assets/img/logo/logo.svg" alt="Logo">
+                                <img src="{{asset('user_assets/img/logo/logo.svg')}}" alt="Logo">
                             </figure>
                         </a>
                     </div>
@@ -374,7 +374,7 @@
                                         <a href="{{route('my-account')}}">My Account</a>
                                     </li>
                                     <li>
-                                        <a href="{{route('cart')}}">Shopping Cart</a>
+                                        <a href="{{route('cart.view')}}">Shopping Cart</a>
                                     </li>
                                     <li>
                                         <a href="{{route('checkout')}}">Check Out</a>
@@ -393,7 +393,7 @@
                             <li class="header-toolbar__item">
                                 <a href="#miniCart" class="mini-cart-btn toolbar-btn">
                                     <i class="dl-icon-cart4"></i>
-                                    <sup class="mini-cart-count">2</sup>
+                                    <sup class="mini-cart-count">{{isset($cartItemCount) ? $cartItemCount : 0}}</sup>
                                 </a>
                             </li>
                             <li class="header-toolbar__item">
@@ -650,7 +650,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{route('cart')}}">
+                                                    <a href="{{route('cart.view')}}">
                                                         Shopping Cart
                                                     </a>
                                                 </li>
