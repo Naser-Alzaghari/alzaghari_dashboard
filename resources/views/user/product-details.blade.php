@@ -72,7 +72,7 @@
                                         }'>
                                         @foreach ($product->images as $image)
                                         <figure class="product-gallery__thumb--single">
-                                            <img src="{{asset('Storage/'.$image->image_url)}}" alt="Products">
+                                            <img src="{{asset('Storage/'.$image->image_url)}}" alt="Products" >
                                         </figure>
                                     @endforeach
                                         </div>
@@ -87,56 +87,70 @@
                                 </div>
                             </div>
                         </div>
-                        <span class="product-badge new">New</span>
+                        {{-- <span class="product-badge new">New</span> --}}
                     </div>
                 </div>
                 <div class="col-md-6 product-main-details mt--40 mt-md--10 mt-sm--30">
                     <div class="product-summary">
-                        <div class="product-rating float-left">
-                            <span>
-                                <i class="dl-icon-star rated"></i>
-                                <i class="dl-icon-star rated"></i>
-                                <i class="dl-icon-star rated"></i>
-                                <i class="dl-icon-star rated"></i>
-                                <i class="dl-icon-star rated"></i>
-                            </span>
-                            <a href="" class="review-link">(1 customer review)</a>
-                        </div>
-                        <div class="product-navigation">
+                        
+                        
+                        {{-- <div class="product-navigation">
                             <a href="#" class="prev"><i class="dl-icon-left"></i></a>
                             <a href="#" class="next"><i class="dl-icon-right"></i></a>
-                        </div>
+                        </div> --}}
                         <div class="clearfix"></div>
-                        <h3 class="product-title">{{$product->name}}</h3>
-                        <span class="product-stock in-stock float-right">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="product-title m-0">{{$product->name}}</h3>
+                            <div class="product-rating float-left">
+                                <span>
+                                    @for ($i = 0; $i < number_format($product->averageRating()); $i++)
+                                        <i class="dl-icon-star rated"></i>
+                                    @endfor
+                                    @for ($i = number_format($product->averageRating()); $i < 5; $i++)
+                                        <i class="dl-icon-star"></i>
+                                    @endfor
+                                </span>
+                                <span class="inline-block ms-4">
+                                    {{$product->ratingsCount()}} ratings
+                                </span>
+                            </div> 
+                        </div>
+                        <span class="product-stock in-stock float-right mb-5 mt-5">
+                            
+                            @if ($product->stock > 0)
                             <i class="dl-icon-check-circle1"></i>
-                            in stock
+                            in stock {{$product->stock}} left
+                            @else
+                                SOLD OUT
+                            @endif
+                            
                         </span>
                         <div class="product-price-wrapper mb--40 mb-md--10">
-                            <span class="money">$49.00</span>
-                            <span class="old-price">
-                                <span class="money">$60.00</span>
-                            </span>
+                            @if (isset($product->price_after_discount))
+                                <span class="money">{{$product->price_after_discount}}JD</span>
+                                <span class="old-price">
+                                    <span class="money">{{$product->price}}JD</span>
+                                </span>
+                                @else
+                                <span class="money">{{$product->price}}JD</span>
+                            @endif
                         </div>
                         <div class="clearfix"></div>
-                        <p class="product-short-description mb--45 mb-sm--20">Donec accumsan auctor iaculis. Sed
-                            suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices
-                            justo eget, sodales orci. Aliquam egestas libero ac turpis pharetra, in vehicula
-                            lacus scelerisque. Vestibulum ut sem laoreet, feugiat tellus at, hendrerit arcu.</p>
+                        <p class="product-short-description mb--45 mb-sm--20">{{$product->description}}</p>
                         <form action="#" class="form--action mb--30 mb-sm--20">
                             <div class="product-action flex-row align-items-center">
                                 <div class="quantity">
                                     <input type="number" class="quantity-input" name="qty" id="qty" value="1"
                                         min="1">
                                 </div>
-                                <button type="button" class="btn btn-style-1 btn-large add-to-cart">
+                                <button type="button" class="btn btn-style-1 btn-large add-to-cart add_to_cart_btn" data-product-id="{{ $product->id }}">
                                     Add To Cart
                                 </button>
                                 <a href="wishlist.html"><i class="dl-icon-heart2"></i></a>
                                 <a href="compare.html"><i class="dl-icon-compare2"></i></a>
                             </div>
                         </form>
-                        <div class="product-extra mb--40 mb-sm--20">
+                        {{-- <div class="product-extra mb--40 mb-sm--20">
                             <a href="#" class="font-size-12"><i class="fa fa-map-marker"></i>Find store near
                                 you</a>
                             <a href="#" class="font-size-12"><i class="fa fa-exchange"></i>Delivery and
@@ -183,7 +197,7 @@
                                 </ul>
                                 <!-- Social Icons End Here -->
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -198,37 +212,14 @@
                             </button>
                             <button type="button" class="product-data-tab__link nav-link" id="nav-reviews-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-reviews" role="tab" aria-selected="true">
-                                <span>Reviews(1)</span>
+                                <span>Reviews ({{$product->ratingsCount()}})</span>
                             </button>
                         </div>
                         <div class="tab-content product-data-tab__content" id="product-tabContent">
                             <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
                                 aria-labelledby="nav-description-tab">
                                 <div class="product-description">
-                                    <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna
-                                        molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci.
-                                        Aliquam egestas libero ac turpis pharetra, in vehicula lacus
-                                        scelerisque. Vestibulum ut sem laoreet, feugiat tellus at, hendrerit
-                                        arcu.
-
-                                        <p>Nunc lacus elit, faucibus ac laoreet sed, dapibus ac mi. Maecenas eu
-                                            ante a elit tempus fermentum. Aliquam commodo tincidunt semper.
-                                            Phasellus accumsan, justo ac mollis pharetra, ex dui pharetra nisl,
-                                            a scelerisque ipsum nulla ac sem. Cras eu risus urna. Duis lorem
-                                            sapien, congue eget nisl sit amet, rutrum faucibus elit.</p>
-
-                                        <ul>
-                                            <li>Maecenas eu ante a elit tempus fermentum. Aliquam commodo
-                                                tincidunt semper</li>
-                                            <li>Aliquam est et tempus. Eaecenas libero ante, tincidunt vel</li>
-                                        </ul>
-
-                                        <p>Curabitur sodales euismod nibh. Sed iaculis sed orci eget semper. Nam
-                                            auctor, augue et eleifend tincidunt, felis mauris convallis neque,
-                                            in placerat metus urna laoreet diam. Morbi sagittis facilisis arcu
-                                            sed ornare. Maecenas dictum urna ut facilisis rhoncus.iaculis sed
-                                            orci eget semper. Nam auctor, augue et eleifend tincidunt, felis
-                                            mauris</p>
+                                    <p>{{$product->description}}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="nav-reviews" role="tabpanel"
@@ -236,6 +227,7 @@
                                 <div class="product-reviews">
                                     <h3 class="review__title">1 review for Waxed-effect pleated skirt</h3>
                                     <ul class="review__list">
+                                        @foreach ($product->reviews as $review)
                                         <li class="review__item">
                                             <div class="review__container">
                                                 <img src="{{asset('user_assets/img/others/comment-icon-2.png')}}"
@@ -243,27 +235,27 @@
                                                 <div class="review__text">
                                                     <div class="product-rating float-right">
                                                         <span>
-                                                            <i class="dl-icon-star rated"></i>
-                                                            <i class="dl-icon-star rated"></i>
-                                                            <i class="dl-icon-star rated"></i>
-                                                            <i class="dl-icon-star rated"></i>
-                                                            <i class="dl-icon-star rated"></i>
+                                                            @for ($i = 0; $i < number_format($review->rating); $i++)
+                                                                <i class="dl-icon-star rated"></i>
+                                                            @endfor
+                                                            @for ($i = number_format($review->rating); $i < 5; $i++)
+                                                                <i class="dl-icon-star"></i>
+                                                            @endfor
                                                         </span>
-                                                    </div>
+                                                    </div> 
+                                                    
                                                     <div class="review__meta">
-                                                        <strong class="review__author">John Snow </strong>
+                                                        <strong class="review__author">{{$review->user->name}}</strong>
                                                         <span class="review__dash">-</span>
-                                                        <span class="review__published-date">November 20,
-                                                            2018</span>
+                                                        <span class="review__published-date">{{$review->created_at}}</span>
                                                     </div>
                                                     <div class="clearfix"></div>
-                                                    <p class="review__description">Aliquam egestas libero ac
-                                                        turpis pharetra, in vehicula lacus scelerisque.
-                                                        Vestibulum ut sem laoreet, feugiat tellus at, hendrerit
-                                                        arcu.</p>
+                                                    <p class="review__description">{{$review->comment}}</p>
                                                 </div>
                                             </div>
                                         </li>
+                                        @endforeach
+                                        
                                     </ul>
                                     <div class="review-form-wrapper">
                                         <span class="reply-title"><strong>Add a review</strong></span>

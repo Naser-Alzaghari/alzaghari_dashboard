@@ -352,6 +352,9 @@
 
         var $button = $(this);
         var productId = $button.data('product-id');
+        var quantity = $button.siblings('.quantity').find('.quantity-input').val() ?? 1;
+        console.log($button.siblings('.quantity').find('.quantity-input').val());
+        
         $button.prop('disabled', true);
 
         $.ajax({
@@ -359,7 +362,8 @@
             method: 'POST',
             data: {
                 _token: '{{ csrf_token() }}',
-                product_id: productId
+                product_id: productId,
+                quantity: quantity
             },
             success: function(response) {
                 console.log(response); // Log response data
@@ -464,7 +468,7 @@
                         ${product.images && product.images.length > 0 ? `<img src="{{ asset('storage/') }}/${product.images[0].image_url}" alt="${product.name}">` : '<img src="{{ asset('storage/images/default_product.png')}}" alt="Product Image">'}
                     </div>
                     <div class="mini-cart__product__content">
-                        <a class="mini-cart__product__title" href="{{route('product-details', $product->id)}}">${product.name}</a>
+                        <a class="mini-cart__product__title">${product.name}</a>
                         <div class="quantity-controls">
                             <button class="update-cart-quantity" data-product-id="${product.id}" data-action="${quantity === 1 ? 'remove' : 'decrease'}">
                                 <i class="fa-solid ${quantity === 1 ? 'fa-trash' : 'fa-minus'}"></i>

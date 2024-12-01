@@ -18,7 +18,7 @@
                             @endif
                         </div>
                         <div class="mini-cart__product__content">
-                            <a class="mini-cart__product__title" href="{{route('product-details', $product->id)}}">{{$item['product']->name}} </a>
+                            <a class="mini-cart__product__title" href="{{route('product-details', $item['product']->id)}}">{{$item['product']->name}} </a>
                             <div class="quantity-controls">
                                 <button class="update-cart-quantity btn-decrease" data-product-id="{{ $item['product']->id }}" data-action="decrease">
                                     <i class="{{ $item['quantity'] > 1 ? 'fa-solid fa-minus' : 'fa-solid fa-trash' }}"></i>
