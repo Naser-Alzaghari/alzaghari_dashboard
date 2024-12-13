@@ -165,6 +165,10 @@ class ProductController extends Controller
         return redirect()->route('admin.products')->with('success', 'product soft-deleted successfully!');
     }
 
+    
+
+
+
 //     public function restore($id)
 // {
 //     $product = User::onlyTrashed()->findOrFail($id);

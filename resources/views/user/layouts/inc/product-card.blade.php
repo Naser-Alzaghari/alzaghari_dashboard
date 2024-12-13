@@ -23,12 +23,12 @@
                 </div>
                 <div class="airi-product-action">
                     <div class="product-action">
-                        <a class="quickview-btn action-btn" data-bs-toggle="tooltip"
-                            data-bs-placement="left" title="Quick Shop">
-                            <span data-bs-toggle="modal" data-bs-target="#productModal">
-                                <i class="dl-icon-view"></i>
+                        <a class="quickview-btn action-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="Quick Shop">
+                            <span data-bs-toggle="modal" data-bs-target="#productModal" data-product-id="{{ $product->id }}">
+                              <i class="dl-icon-view"></i>
                             </span>
-                        </a>
+                          </a>
+                          
                         {{-- <form action="{{route('cart.add')}}" method="post">
                             @csrf
                             <input type="hidden" name="product_id" value="{{$product->id}}">
@@ -38,7 +38,7 @@
                             </button>
                         </form> --}}
 
-                        <a href="#" class="add_to_cart_btn action-btn" data-product-id="{{ $product->id }}" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Cart">
+                        <a href="#" class="add_to_cart_btn action-btn" data-product-name="{{$product->name}}" data-product-id="{{ $product->id }}" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Cart">
                             <i class="dl-icon-cart29"></i>
                         </a>
                         

@@ -5,7 +5,7 @@
                 <div class="col-lg-3 col-md-8 mb-md--30">
                     <div class="footer-widget">
                         <div class="textwidget">
-                            <img src="user_assets/img/logo/logo-white.png" alt="Logo" class="mb--10">
+                            <img src="{{asset('user_assets/img/logo/logo-white.png')}}" alt="Logo" class="mb--10">
                             <p class="font-size-16 font-2 mb--20">Integer ut ligula quis lectus fringilla
                                 elementum porttitor sed est. Duis fringilla efficitur ligula sed lobortis.</p>
                             <!-- Social Icons Start Here -->
@@ -90,7 +90,7 @@
                             </li>
                         </ul>
                         <div class="textwidget">
-                            <img src="user_assets/img/others/payments.png" alt="Payment">
+                            <img src="{{asset('user_assets/img/others/payments.png')}}" alt="Payment">
                         </div>
                     </div>
                 </div>

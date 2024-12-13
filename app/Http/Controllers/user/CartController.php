@@ -36,6 +36,7 @@ class CartController extends Controller
             'cartItemCount' => $cartItemCount,
             'product' => $product,
             'quantity' => (int)$quantity,
+            'total' => $this->calculateTotal($cart)
         ]);
     }
 
@@ -56,7 +57,9 @@ class CartController extends Controller
             ];
         });
 
-        return view('user.cart', compact('cartItems'));
+        $total = $this->calculateTotal($cart);
+
+        return view('user.cart', compact('cartItems', 'total'));
     }
 
     public function updateQuantity(Request $request)
@@ -76,6 +79,15 @@ class CartController extends Controller
         return response()->json([
             'cartItemCount' => $cartItemCount,
             'quantity' => $cart[$productId]['quantity'],
+            'total' => $this->calculateTotal($cart)
+        ]);
+    }
+
+    public function updateTotal()
+    {
+        $cart = session()->get('cart', []);
+        return response()->json([
+            'total' => $this->calculateTotal($cart)
         ]);
     }
 
@@ -94,10 +106,17 @@ class CartController extends Controller
 
         return response()->json([
             'cartItemCount' => $cartItemCount,
+            'total' => $this->calculateTotal($cart)
         ]);
     }
+
+    private function calculateTotal($cart)
+    {
+        $total = 0;
+        foreach ($cart as $item) {
+            $product = Product::find($item['product_id']);
+            $total += $product->price * $item['quantity'];
+        }
+        return number_format($total, 2);
+    }
 }
-
-
-
-

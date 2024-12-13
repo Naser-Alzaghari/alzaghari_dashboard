@@ -211,10 +211,14 @@ Route::prefix('admin')
 
             Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
             Route::post('/update-cart-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+            Route::post('/update-cart-total', [CartController::class, 'updateTotal'])->name('cart.updateTotal');
             Route::post('/remove-cart-item', [CartController::class, 'removeItem'])->name('cart.removeItem');
             Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
             Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout')->middleware('auth');
             Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('order.place')->middleware('auth');
+            Route::get('/product-data', [UserProductController::class, 'getProductData'])->name('getProductData');
+            Route::get('/minicartprice', [CartController::class, 'updateCart'])->name('minicartprice');
+
 
             
         

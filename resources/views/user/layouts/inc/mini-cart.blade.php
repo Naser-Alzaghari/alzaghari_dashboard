@@ -7,9 +7,7 @@
                 <ul class="mini-cart__list mini-cart-items">
                     @foreach ($cartItems as $item)
                     <li class="mini-cart__product" data-product-id="{{$item['product']->id}}">
-                        <a href="#" class="remove-from-cart remove">
-                            <i class="dl-icon-close"></i>
-                        </a>
+                        
                         <div class="mini-cart__product__image">
                             @if ($item['product']->images->isNotEmpty())
                                 <img src="{{ asset('storage/' . $item['product']->images[0]->image_url) }}" alt="Product Image">
@@ -34,9 +32,9 @@
                     </li>
                     @endforeach
                 </ul>
-                <div class="mini-cart__total">
+                <div class="mini-cart__total cart-total">
                     <span>Subtotal</span>
-                    <span class="ammount">$98.00</span>
+                    <span class="ammount" id="cart-total">$98.00</span>
                 </div>
                 <div class="mini-cart__buttons">
                     <a href="{{route('cart.view')}}" class="btn btn-fullwidth btn-style-1">View Cart</a>

@@ -9,7 +9,7 @@ class Cart extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id'];
+    protected $fillable = ['user_id', 'product_id', 'quantity', 'price'];
 
     // Belongs-to relationship with User
     public function user()
